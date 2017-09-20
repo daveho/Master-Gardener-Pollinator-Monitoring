@@ -6,7 +6,7 @@ public class Calendar
 	// Alex - TimeStart and TimeStop are set on a weekly basis.
 	// The ID is based on the year when the data was taken. The week
 	// number is, as you can see in our data, the week number.
-	private int calendarID, timeStart, timeStop, weekNumber;
+	private int calendarID, timeStart, timeStop, weekNumber, calendarYear;
 	
 	// Alex - Consider developing a "Date" class to represent dates as listed in the GOODDATA xlsx files.
 	//private Date date;
@@ -27,6 +27,16 @@ public class Calendar
 	public void setCalendarID(int calendarID)
 	{
 		this.calendarID = calendarID;
+	}
+	
+	
+	/**
+	 * 
+	 * @param calendarYear Year that the data in the calendar was taken.
+	 */
+	public void setCalendarYear(int calendarYear)
+	{
+		this.calendarYear = calendarYear;
 	}
 	
 	/**
@@ -65,6 +75,15 @@ public class Calendar
 	public int getCalendarID()
 	{
 		return this.calendarID;
+	}
+	
+	/**
+	 * 
+	 * @return Year that the calendar covers
+	 */
+	public int getCalendarYear()
+	{
+		return this.calendarYear;
 	}
 	
 	/**
