@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Mon Sep 18 12:32:52 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015e-95d5-d48a-00000b6197c8 
-on database directory C:\Users\Logan_53e\eclipse-workspace\Master_Gardener_Source\test.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
+Mon Sep 25 00:09:42 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015e-b739-f476-00000d97d4a8 
+on database directory C:\Users\Logan_53e\git\Master-Gardener-Pollinator-Monitoring\Master_Gardener_Source\test.db with class loader sun.misc.Launcher$AppClassLoader@2a84aee7 
 Loaded from file:/C:/Users/Logan_53e/eclipse-workspace/CS320_Derby/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_51-b16
-user.dir=C:\Users\Logan_53e\eclipse-workspace\Master_Gardener_Source
+user.dir=C:\Users\Logan_53e\git\Master-Gardener-Pollinator-Monitoring\Master_Gardener_Source
 os.name=Windows 8.1
 os.arch=amd64
 os.version=6.3
