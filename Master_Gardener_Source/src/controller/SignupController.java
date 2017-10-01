@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package controller;
 
 import database.DatabaseProvider;
@@ -18,3 +19,25 @@ public class SignupController {
 		return this.database.insertNewAccountIntoDatabase(account);
 	}
 }
+=======
+package controller;
+
+import database.DatabaseProvider;
+import database.DerbyDatabase;
+import database.IDatabase;
+import model.Account;
+
+public class SignupController {
+	
+	private IDatabase database = null;
+
+	public SignupController(){
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		database = DatabaseProvider.getInstance();
+	}
+	
+	public boolean createAccount(Account account){
+		return this.database.insertNewAccountIntoDatabase(account);
+	}
+}
+>>>>>>> test_Branch
