@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.SearchController;
+import controller.DataController;
 //import controller.UserController;
 //import model.Account;
 import model.Group;
 
 public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private SearchController controller = null;
+	private DataController controller = null;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
 				
-		controller = new SearchController();
+		controller = new DataController();
 		String keyword;
 		keyword = (String) req.getSession().getAttribute("keyword");
 		List<Group> groups = null;
@@ -55,7 +55,7 @@ public class SearchServlet extends HttpServlet {
 		String buttonPress = req.getParameter("Submit");
 		
 		if(buttonPress != null){
-			SearchController controller = new SearchController();
+			DataController controller = new DataController();
 			groupID = controller.getGroupIDbyGroupname(buttonPress);
 			req.getSession().setAttribute("GroupID", groupID);
 			resp.sendRedirect(req.getContextPath()+"/group");

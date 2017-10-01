@@ -1,6 +1,7 @@
-package controller;
-import model.Group;
+// Alex - This class was previously known as "SearchController" but was taken over by me. It is now data controller
+// and will serve my purposes.
 
+package controller;
 import java.sql.SQLException;
 //import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +12,28 @@ import java.util.List;
 import database.DatabaseProvider;
 import database.DerbyDatabase;
 import database.IDatabase;
+import model.Group;
  
-public class SearchController {
+public class DataController {
 
 	private IDatabase database = null;
 
-	public SearchController() {
+	public DataController() {
 
 		// creating DB instance here
 		DatabaseProvider.setInstance(new DerbyDatabase());
 		database = DatabaseProvider.getInstance();		
 	}
 
+	/* Alex - Here are some example queries we'll likely need. We'll need more.
+	getPlantByID()
+	getPlantByStrand()
+	getPollinatorByID()
+	getPollinatorByVisitCount()
+	getWeekByWeekNumber()
+	getWeeksByDate()
+	getAllDataByCounty()
+	*/
 	
 	public List<Group> getGroupsLike(String keyword) throws SQLException {
 		System.out.println("reached controller with keyword "+keyword);

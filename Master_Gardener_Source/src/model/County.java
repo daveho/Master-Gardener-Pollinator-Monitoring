@@ -1,13 +1,13 @@
 package model;
 
-public class Counties
+public class County
 {
 	private int countyID;
 	
 	// Alex - There's a good chance we simply won't use stateName. That's acceptable.
 	private String countyName, stateName;
 	
-	public Counties()
+	public County()
 	{
 		
 	}
