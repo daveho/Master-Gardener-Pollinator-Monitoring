@@ -5,7 +5,12 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets --><servlet>
+  <!-- Servlets -->
+  <servlet>
+  	<servlet-name>DataServlet</servlet-name>
+  	<servlet-class>servlet.DataServlet</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>UserServlet</servlet-name>
   	<servlet-class>servlet.UserServlet</servlet-class>
 </servlet>
@@ -46,13 +51,15 @@
     <servlet-class>servlet.MemberServlet</servlet-class>
   </servlet>
 
-
-  
-
-  <!-- Servlet mappings --><servlet-mapping>
+  <!-- Servlet mappings -->
+  <servlet-mapping>
+  	<servlet-name>DataServlet</servlet-name>
+  	<url-pattern>/data</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>UserServlet</servlet-name>
   	<url-pattern>/user</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
 	<servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/home</url-pattern>
@@ -89,9 +96,8 @@
     <servlet-name>MemberServlet</servlet-name>
     <url-pattern>/members</url-pattern>
   </servlet-mapping>
- 
-	
   <welcome-file-list>
     <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
+
 </web-app>

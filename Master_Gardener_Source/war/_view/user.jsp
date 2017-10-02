@@ -62,6 +62,11 @@
 
 						<div id="navbar-collapse-02" class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-right">
+							<li class="propClone">
+									<form action="${pageContext.servletContext.contextPath}/data" method="get">
+  										<input name="buttonPress" type="image" value="Data" class="homeLinks" src="images/Data-Board.png" title="Data"/>
+									</form>
+								</li>
 								<li class="propClone">
 									<form action="${pageContext.servletContext.contextPath}/user" method="get">
   										<input name="buttonPress" type="image" value="Account" class="homeLinks" src="images/user.png" title="My Account"/>

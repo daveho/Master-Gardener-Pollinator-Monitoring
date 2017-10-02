@@ -934,14 +934,6 @@ width:29px;
 height:29px;
 }
 
-#login{
-display: block;
-position:relative;
-top:200px;
-width:300px;
-margin:auto;
-}
-
 #username{
 float:left;
 width:100%;
@@ -970,16 +962,6 @@ margin:10px;
 float:left;
 width:300px;
 margin:10px;
-}
-
-#loginSubmit{
-float:left;
-width:300px;
-margin:10px;
-background-color:#00265D;
-color:white;
-border:none;
-height:40px;
 }
 
 #generalSubmit{
@@ -1193,6 +1175,255 @@ margin:auto;
 font-size: 30px;
 text-align: center;
 padding:0px;
+}
+
+#gardenName{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#gardenNameEntry{
+float:left;
+width:100%;
+margin:10px;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+#Date{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#dateField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#startTime{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#startTimeField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#endTime{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#endTimeField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#temperature{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#temperatureField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#wind{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#WindField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#cloudCover{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#cloudCoverField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#plantType{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#plantTypeField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#pollinatorType{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#pollinatorTypeField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#pollinatorCount{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#pollinatorCountField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#avgHeightofPlot{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#avgHeightofPlotField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#sizePlot{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#sizePlotField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#bloomsOpen{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#bloomsOpenField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#flowerCoverage{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#flowerCoverageField{
+float:left;
+width:100%;
+margin:10px;
+}
+
+#plantVigor{
+display: block;
+position:relative;
+top:100px;
+width:300px;
+margin:auto 40px;
+}
+
+#plantVigorField{
+float:left;
+width:100%;
+margin:10px;
 }
 
 #centerDiv{
