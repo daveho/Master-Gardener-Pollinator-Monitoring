@@ -56,7 +56,7 @@ public class Date
 		this.year = year;
 	}
 	
-	public int getYear()
+	public void getYear()
 	{
 		return this.year;
 	}

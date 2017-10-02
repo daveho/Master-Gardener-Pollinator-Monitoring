@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*	FOOTER Copyright Bar
 /*----------------------------------------------------*/
 
@@ -14,3 +15,21 @@
 	font-weight: 700;
 	margin: 0;
 }
+=======
+/*	FOOTER Copyright Bar
+/*----------------------------------------------------*/
+
+.copyright-bar {
+	height: 70px;
+	padding-top: 20px;
+	background-color: #233447;
+	position: relative;
+	bottom: 0;
+}
+
+.copyright-bar p {
+	color: #ffffff;
+	font-weight: 700;
+	margin: 0;
+}
+>>>>>>> test_Branch

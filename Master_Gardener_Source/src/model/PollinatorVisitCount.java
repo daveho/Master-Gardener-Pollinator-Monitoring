@@ -14,7 +14,7 @@ public class PollinatorVisitCount
 	{
 		return this.count;
 	}
-	public void setCount(int count)
+	public void setCount()
 	{
 		this.count = count;
 	}
