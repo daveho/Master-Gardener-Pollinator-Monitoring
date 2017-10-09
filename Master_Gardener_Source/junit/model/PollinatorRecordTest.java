@@ -25,4 +25,11 @@ public class PollinatorRecordTest {
     {
         assertEquals(p1.getWeekNumber(), 10);
     }
+    
+    @Test
+    public void setWeekNumber()
+    {
+    	p1.setWeekNumber(5);
+    	assertEquals(p1.getWeekNumber(), 5);
+    }
 }

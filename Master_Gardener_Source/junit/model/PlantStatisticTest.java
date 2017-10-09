@@ -34,10 +34,24 @@ public class PlantStatisticTest {
     }
 
     @Test
+    public void setPlantHeightTest()
+    {
+    	p1.setPlantHeight(420);
+    	assertEquals(p1.getPlantHeight(), 420);
+    }
+    
+    @Test
     public void getPlantSizeTest()
     {
         assertEquals(p1.getPlantSize(), 13);
         assertEquals(p2.getPlantSize(), 89);
+    }
+    
+    @Test
+    public void setPlantSizeTest()
+    {
+    	p1.setPlantSize(420);
+    	assertEquals(p1.getPlantSize(), 420);
     }
 
     @Test
@@ -46,12 +60,26 @@ public class PlantStatisticTest {
         assertEquals(p1.getPercentCoverage(), 40);
         assertEquals(p2.getPercentCoverage(), 20);
     }
+    
+    @Test
+    public void setPercentCoverageTest()
+    {
+    	p1.setPercentCoverage(99);
+    	assertEquals(p1.getPercentCoverage(), 99);
+    }
 
     @Test
     public void getPlantPlotSizeTest()
     {
         assertEquals(p1.getPlotSize(), 20);
         assertEquals(p2.getPlotSize(), 20);
+    }
+    
+    @Test
+    public void setPlantPlotSizeTest()
+    {
+    	p1.setPlotSize(23);
+    	assertEquals(p1.getPlotSize(), 23);
     }
 
     @Test
@@ -62,9 +90,24 @@ public class PlantStatisticTest {
     }
 
     @Test
+    public void setPlantBloomsOpenTest()
+    {
+    	p1.setBloomsOpen('b');
+    	assertEquals(p1.getBloomsOpen(), 'b');
+    }
+    
+    @Test
     public void getPlantVigorTest()
     {
         assertEquals(p1.getVigor(), 't');
         assertEquals(p2.getVigor(), 'q');
     }
+    
+    @Test
+    public void setPlantVigorTest()
+    {
+    	p1.setVigor('v');
+    	assertEquals(p1.getVigor(), 'v');
+    }
+    
 }

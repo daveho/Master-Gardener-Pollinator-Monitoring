@@ -27,7 +27,7 @@ public class PlantStatistic
 	}
 	
 	
-	public void setplant_height(int plant_height)
+	public void setPlantHeight(int plant_height)
 	{
 		this.plant_height = plant_height;
 	}
@@ -51,7 +51,7 @@ public class PlantStatistic
 	 * @param blooms_open This is typically a 1 character entry found on the data sheets. Contact system admin (Alex)
 	 * in the event of any issues.
 	 */
-	public void setblooms_open (char blooms_open)
+	public void setBloomsOpen (char blooms_open)
 	{
 		this.blooms_open = blooms_open;
 	}

@@ -29,15 +29,36 @@ public class CountyTest {
     }
 
     @Test
-    public void getCountNameTest()
+    public void setCountyIDTest()
+    {
+    	c1.setCountyID(42);
+    	assertEquals(c1.getCountyID(), 42);
+    }
+    
+    @Test
+    public void getCountyNameTest()
     {
         assertEquals(c1.getCountyName(), "York");
+    }
+    
+    @Test
+    public void setCountyNameTest()
+    {
+    	c1.setCountyName("Edwardo");
+    	assertEquals(c1.getCountyName(), "Edwardo");
     }
 
     @Test
     public void getStateNameTest()
     {
         assertEquals(c1.getStateName(), "Pennsylvania");
+    }
+    
+    @Test
+    public void setStateNameTest()
+    {
+    	c1.setStateName("Not Pennsylvania");
+    	assertEquals(c1.getStateName(), "Not Pennsylvania");
     }
 
 }

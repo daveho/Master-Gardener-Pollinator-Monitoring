@@ -40,11 +40,25 @@ public class PollinatorDataTest {
     }
 
     @Test
+    public void setTimeStartTest()
+    {
+    	p1.setTimeStart(1100);
+    	assertEquals(p1.getTimeStart(), 1100);
+    }
+    
+    @Test
     public void getTimeStopTest()
     {
         assertEquals(p1.getTimeStop(), 1030);
     }
 
+    @Test
+    public void setTimeStopTest()
+    {
+    	p1.setTimeStop(1200);
+    	assertEquals(p1.getTimeStop(), 1200);
+    }
+    
     @Test
     public void getTemperatureTest()
     {
@@ -52,14 +66,35 @@ public class PollinatorDataTest {
     }
 
     @Test
+    public void setTemperatureTest()
+    {
+    	p1.setTemperature(50);
+    	assertEquals(p1.getTemperature(), 50);
+    }
+    
+    @Test
     public void getCloudTest()
     {
         assertEquals(p1.getCloudStatus(), "yes");
     }
 
     @Test
+    public void setCloudTest()
+    {
+    	p1.setCloudStatus("yvw");
+    	assertEquals(p1.getCloudStatus(), "yvw");
+    }
+    
+    @Test
     public void getWindTest()
     {
         assertEquals(p1.getWindStatus(), "maybe");
+    }
+    
+    @Test
+    public void setWindTest()
+    {
+    	p1.setWindStatus("crubby");
+    	assertEquals(p1.getWindStatus(), "crubby");
     }
 }

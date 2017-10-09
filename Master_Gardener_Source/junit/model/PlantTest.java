@@ -20,15 +20,29 @@ public class PlantTest {
     }
 
     @Test
-    public void testGetPlantID()
+    public void getPlantIDTest()
     {
         assertEquals(p1.getPlantID(), 9699);
     }
 
     @Test
-    public void testGetPlantSpecies()
+    public void setPlantIDTest()
+    {
+    	p1.setPlantID(42);
+    	assertEquals(p1.getPlantID(), 42);
+    }
+    
+    @Test
+    public void getPlantSpeciesTest()
     {
         assertEquals(p1.getPlantSpecies(), "Red Rover");
+    }
+    
+    @Test
+    public void setPlantSpeciesTest()
+    {
+    	p1.setPlantSpecies("Blue Grover");
+    	assertEquals(p1.getPlantSpecies(), "Blue Grover");
     }
 
 }
