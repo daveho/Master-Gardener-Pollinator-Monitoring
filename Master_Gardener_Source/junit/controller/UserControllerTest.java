@@ -39,7 +39,7 @@ public class UserControllerTest {
 	
 	@Test
 	public void testreturnaccountfromUsername(){
-		Account admin1 = new Account("admin1", "password1", -1, "a_name1", "admin1@ycp.edu", "HEY GUYS I’M ADMIN ONE LETS HAVE SOME FUN");
+		Account admin1 = new Account("admin1", "password1", 2, "a_name1", "admin1@ycp.edu", "HEY GUYS I’M ADMIN ONE LETS HAVE SOME FUN");
 		Account test = thiscontroller.returnAccountForUsername("admin1");
 		assertEquals(admin1.getName(), test.getName());
 		assertEquals(admin1.getEmail(), test.getEmail());

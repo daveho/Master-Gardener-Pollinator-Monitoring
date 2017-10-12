@@ -24,7 +24,7 @@ public class InitialData {
 					break;
 				}
 				Iterator<String> i = tuple.iterator();
-				Account account = new Account(null, null, userId, null, null, null);
+				Account account = new Account("Egg", "12345678", userId, "memes", "memes", "memes");
 				account.setUserId(userId++);
 				account.setUsername(i.next());
 				account.setPassword(i.next());
