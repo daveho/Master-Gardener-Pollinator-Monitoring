@@ -40,7 +40,7 @@ public class Account {
 		{
 			throw new IllegalArgumentException("Description is a required field.");
 		}
-
+		
 		this.username = username;
 		this.password = password;
 		this.loginId = id;

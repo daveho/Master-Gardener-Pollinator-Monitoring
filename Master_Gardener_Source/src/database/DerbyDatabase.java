@@ -2,6 +2,7 @@ package database;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -112,6 +113,8 @@ public class DerbyDatabase implements IDatabase {
 						if(!found)
 						{
 							System.out.println("User ID <" + account_id + "> was not found in the accounts table.");
+							System.out.println("Check the SQL code in the query, account_id may need to change.");
+							System.out.println("May also need a many-to-many table to connect gardens <-> accounts.");
 						}
 					} finally {
 						DBUtil.closeQuietly(stmt);
@@ -127,6 +130,145 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
+	/**
+	 * 
+	 * @param county_id - The identifier for a county. Use this with a drop-down box, most likely.
+	 * @return
+	 */
+	public String getCountyByCountyID(final int county_id)
+	{
+		try {
+			return doQueryLoop(new Query<String>() {
+				@Override
+				public String query(Connection conn) throws SQLException {
+					PreparedStatement stmt = null;
+					ResultSet set = null;
+					String county_name = "";
+					try {
+						stmt = conn.prepareStatement(
+								" select county_name " +
+										"	from counties"
+										+ " where county_id = ?"
+										);
+						stmt.setInt(1, county_id);
+						set = stmt.executeQuery();
+
+						// testing that a set was returned
+						Boolean found = false;
+
+						if (set.next()) {
+							found = true;
+							county_name = set.getString(1);
+						}
+						if(!found)
+						{
+							System.out.println("County name <" + county_name + "> was not found in the counties table.");
+						}
+					} finally {
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(set);
+					}
+					return county_name;
+				}
+			});
+		}
+		catch (SQLException e) {
+			return "Error in getCountyByCountyID: " + e.getMessage() + ".";
+			//return -1;
+		}
+	}
+	
+	public String getCountyByStateName(final String state_name)
+	{
+		try {
+			return doQueryLoop(new Query<String>() {
+				@Override
+				public String query(Connection conn) throws SQLException {
+					PreparedStatement stmt = null;
+					ResultSet set = null;
+					String county_name = "";
+					try {
+						stmt = conn.prepareStatement(
+								" select county_name " +
+										"	from counties"
+										+ " where state_name = ?"
+										);
+						stmt.setString(1, state_name);
+						set = stmt.executeQuery();
+
+						// testing that a set was returned
+						Boolean found = false;
+
+						if (set.next()) {
+							found = true;
+							county_name = set.getString(1);
+						}
+						if(!found)
+						{
+							System.out.println("County name <" + county_name + "> was not found in the counties table.");
+
+						}
+					} finally {
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(set);
+					}
+					return county_name;
+				}
+			});
+		}
+		catch (SQLException e) {
+			return "Error in getCountyByStateName: " + e.getMessage() + ".";
+			//return -1;
+		}
+	}
+	
+	public String getUsernameByCounty(final String county_name)
+	{
+		try {
+			return doQueryLoop(new Query<String>() {
+				@Override
+				public String query(Connection conn) throws SQLException {
+					PreparedStatement stmt = null;
+					ResultSet set = null;
+					String username = "";
+					try {
+						stmt = conn.prepareStatement(
+								" select username " +
+										"	from accounts, counties"
+										+ " where county_name = ? "
+										+ " and accounts.account_id = counties.account_id "
+										);
+						stmt.setString(1, county_name);
+						set = stmt.executeQuery();
+
+						// testing that a set was returned
+						Boolean found = false;
+
+						if (set.next()) {
+							found = true;
+							username = set.getString(1);
+						}
+						if(!found)
+						{
+							System.out.println("User <" + username + "> was not found attached to the counties table.");
+							System.out.println("Check SQL code for counties.accounts_id, it may need to be counties.county_account_id");
+							System.out.println("May also need a many-to-many table to connect accounts <-> counties.");
+						}
+					} finally {
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(set);
+					}
+					return county_name;
+				}
+			});
+		}
+		catch (SQLException e) {
+			return "Error in getGardenIDByAccountID: " + e.getMessage() + ".";
+			//return -1;
+		}
+	}
+	
+	
 	/**
 	 *
 	 * @param garden_id
@@ -210,6 +352,8 @@ public class DerbyDatabase implements IDatabase {
 						if(!found)
 						{
 							System.out.println("User <" + username + "> was not found related to the counties table.");
+							System.out.println("Check the SQL code in the query, account_id may need to be county_account_id or something.");
+							System.out.println("May also need a many-to-many table to connect accounts <-> counties.");
 						}
 					} finally {
 						DBUtil.closeQuietly(stmt);
@@ -992,6 +1136,8 @@ public class DerbyDatabase implements IDatabase {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
+
+				
 				PreparedStatement stmt1 = null; //Accounts table
 				PreparedStatement stmt2 = null; //Groups table
 				PreparedStatement stmt3 = null; //Group members table
@@ -1024,6 +1170,7 @@ public class DerbyDatabase implements IDatabase {
 									"   rating integer " +
 									")"
 					);
+					
 					stmt2.executeUpdate();
 					//CREATING GROUP MEMBERS
 					stmt3 = conn.prepareStatement(
@@ -1031,10 +1178,11 @@ public class DerbyDatabase implements IDatabase {
 									"	member_id integer primary key " +
 									"		generated always as identity (start with 1, increment by 1), " +
 									"	group_id integer constraint group_id references groups, " +
-									"	account_id integer constraint account_id references accounts " +
+									"	account_id integer constraint group_account_id references accounts " +
 									")"
 					);
 					stmt3.executeUpdate();
+					
 					//CREATING POSTS
 					stmt4 = conn.prepareStatement(
 							"create table posts (" +
@@ -1055,7 +1203,7 @@ public class DerbyDatabase implements IDatabase {
 									"garden_id integer primary key " +
 									"	generated always as identity (start with 1, increment by 1), " +
 									"	garden_address varchar(30)," +
-									"	account_id integer constraint account_id references accounts " +
+									"	account_id integer constraint garden_account_id references accounts " +
 									")"
 					);
 					stmt5.executeUpdate();
@@ -1067,12 +1215,12 @@ public class DerbyDatabase implements IDatabase {
 							"county_id integer primary key " +
 							"	generated always as identity (start with 1, increment by 1)," +
 							"county_name varchar(30)," +
-							"garden_id integer constraint post_garden_id references gardens," +
-							"account_id integer constraint account_id references accounts" +
+							"garden_id integer constraint county_garden_id references gardens," +
+							"account_id integer constraint county_account_id references accounts" +
 							")"
 					);
 					stmt6.executeUpdate();
-
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -1119,6 +1267,12 @@ public class DerbyDatabase implements IDatabase {
 					return false;
 				}finally{
 					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
+					DBUtil.closeQuietly(stmt4);
+					DBUtil.closeQuietly(stmt5);
+					DBUtil.closeQuietly(stmt6);
+
 				}
 				return true;
 			}
