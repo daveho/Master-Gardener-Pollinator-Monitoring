@@ -23,7 +23,7 @@ public class Main {
 		server.start();
 		
 		// Wait for the user to type "quit"
-		System.out.println("Web server started, type quit to shut down \n");
+		System.out.println("Web server started at http://localhost:8081/Master-Gardener/home, type quit to shut down \n");
 		Scanner keyboard = new Scanner(System.in);
 		while (keyboard.hasNextLine()) {
 			String line = keyboard.nextLine();
