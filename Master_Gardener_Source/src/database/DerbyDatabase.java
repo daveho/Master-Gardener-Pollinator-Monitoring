@@ -387,8 +387,6 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
-
-
 	public List<Group> getGroupbyGroupName(String name){
 		return executeTransaction(new Transaction<List<Group>>() {
 			public List<Group> execute(Connection conn) throws SQLException {
@@ -427,12 +425,7 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 
-
-
-
 	}
-
-
 
 
 	public List<Group> getGroupbyGroupID(int ID){
@@ -474,7 +467,6 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-
 
 
 	public List<Pair<Account, Post>> getPostsbyGroupID(int ID) {
@@ -523,9 +515,6 @@ public class DerbyDatabase implements IDatabase {
 
 			}
 		});
-
-
-
 	}
 
 	public List<Group> getGroupsLikeKeyword(String keyword){
@@ -567,8 +556,6 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-
-
 	public List<Group> getGroupsByUser(final String user){
 		return executeTransaction(new Transaction<List<Group>>() {
 			@Override
@@ -607,11 +594,6 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-
-
-
-
-
 
 	public String queryForPasswordByUsername(String username){
 		try{
@@ -1290,12 +1272,14 @@ public class DerbyDatabase implements IDatabase {
 				List<GroupMember> groupMemberList;
 				List<Post> postList;
 				List<Garden> gardenList;
+				List<County> countyList;
 				try {
 					accountList = InitialData.getAccounts();
 					groupList = InitialData.getGroups();
 					groupMemberList = InitialData.getGroupMembers();
 					postList = InitialData.getPosts();
 					// TODO: Garden List
+					// TODO: County List
 
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
