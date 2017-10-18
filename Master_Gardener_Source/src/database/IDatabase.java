@@ -30,8 +30,12 @@ public interface IDatabase {
 	public boolean insertNewGroupMemberIntoDatabase(GroupMember groupMember);
 
 	// Master Gardener Program methods
+	public int getGardenIDByAccountID(final int account_ID);
+	public String getCountyByCountyID(final int county_id);
+	public String getCountyByStateName(final String state_name);
+	public String getUsernameByCounty(final String county_name);
 	public String getGardenAddressByGardenID(final int garden_id);
-	public int getGardenIDByAccountID(int account_ID);
 	public String getUsernameByCountyID(final int county_id);
-
+	
+	
 }
