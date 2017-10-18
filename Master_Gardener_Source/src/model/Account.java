@@ -16,14 +16,30 @@ public class Account {
 
 	
 	public Account(String username, String password, int id, String name, String email, String description){
-		/*if(username.equals("") || password.length() < 8 || id <= 0 || name.equals("") || email.equals("") || description.equals(""))
+		if(username.equals(""))
 		{
-			throw new IllegalArgumentException("There is an error with one or more argument(s).\n" +
-					"Username is a required field.\n" +
-					"Password requires AT LEAST 8 characters.\n" +
-					"ID must be a non-zero positive integer.\n" +
-					"Name/Email/Description are all required fields.");
-		} */
+			throw new IllegalArgumentException("Users must have a username.\n");
+		}
+		if(password.length() < 8)
+		{
+			throw new IllegalArgumentException("User passwords must be 8 or more characters long.");
+		}
+		if(id <= 0)
+		{
+			throw new IllegalArgumentException("User IDs must be a non-zero positive integer.");
+		}
+		if(name.equals(""))
+		{
+			throw new IllegalArgumentException("Username is a required field.");
+		}
+		if(email.equals(""))
+		{
+			throw new IllegalArgumentException("Email is a required field.");
+		}
+		if(description.equals(""))
+		{
+			throw new IllegalArgumentException("Description is a required field.");
+		}
 
 		this.username = username;
 		this.password = password;

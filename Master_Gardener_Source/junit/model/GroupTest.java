@@ -1,3 +1,6 @@
+//This test sucks and whoever wrote it should feel bad
+//On a side node, I changed line 24 from new Account(null, null, 0, ..) to actually be a (fake) account
+
 package model;
 
 //import static org.junit.Assert.*;
@@ -18,7 +21,7 @@ public class GroupTest {
 		
 		//testing variables
 		Group group = new Group("a group", "description", 0);
-		Account testAccount = new Account(null, null, 0, null, null, null);
+		Account testAccount = new Account("chorgy", "12345678", 1, "dude", "look", "lady");
 		ArrayList<Account> userlist = new ArrayList<Account>(); 
 		userlist.add(testAccount);
 		Post testpost = new Post("a post", 1, 1);
