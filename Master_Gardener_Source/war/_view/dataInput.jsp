@@ -29,6 +29,7 @@
 <!--headerIncludes-->
 
 
+
 </head>
 <body>
 
@@ -65,7 +66,7 @@
 						<div id="navbar-collapse-02" class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-right">
 								<li class="propClone">
-									<form action="${pageContext.servletContext.contextPath}/data"
+									<form action="${pageContext.servletContext.contextPath}/dataInput"
 										method="get">
 										<input name="buttonPress" type="image" value="Data"
 											class="homeLinks" src="images/Data-Board.png" title="Data" />

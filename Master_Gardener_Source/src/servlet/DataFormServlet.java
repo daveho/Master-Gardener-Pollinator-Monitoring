@@ -8,18 +8,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.DataFormController;
-import controller.LoginController;
+
 
 public class DataFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+			req.getRequestDispatcher("/_view/dataInput.jsp").forward(req, resp);	
+		}
+
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+			req.getRequestDispatcher("/_view/dataInput.jsp").forward(req, resp);
+	}
+}
 	
+	
+	
+	/*
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		/*try{
-			
-		} */
+		try{
+			String username = req.getSession().getAttribute("username").toString();
+			if(username != null){
+				resp.sendRedirect(req.getContextPath() + "/user");
+			}
+		}
+		catch (NullPointerException e){
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		}
 	}
 
 	@Override
@@ -95,38 +121,9 @@ public class DataFormServlet extends HttpServlet {
 						"".equals(plantVigor) || plantVigor == null) {
 					errorMessage = "Invaild Data Entry";
 				}
-				else {
-					int DataId = login.loginUser(username, password);
-					if(loginId >= 0){
-						req.getSession().setAttribute("username", username);
-						req.getSession().setAttribute("login_id", loginId);
-						loggedin = true;
-						req.setAttribute("loggedin", loggedin);
-					}
-					else{
-						errorMessage = "Invalid username or password.";
-					}
-				}
-
-				if(loggedin){
-					req.setAttribute("account", login.returnAccountForUsername(username));
-					//req.getRequestDispatcher("/_view/user.jsp").forward(req, resp);
-					
-					resp.sendRedirect(req.getContextPath() + "/user");
-				}
-				else{
-					req.setAttribute("username",username);
-					req.setAttribute("errorMessage", errorMessage);
-					req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-				}
 			}
 		}
-		else{
-			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-		}
 	}
-
 }
 
-
-
+*/
