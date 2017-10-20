@@ -7,11 +7,19 @@ public class County
 	// Alex - There's a good chance we simply won't use stateName. That's acceptable.
 	private String countyName, stateName;
 	
-	public County()
+	public County(int countyID, String countyName, String stateName)
 	{
-		this.countyName= "";
-		this.stateName = "";
-		
+	    if(countyID <= 0)
+        {
+            throw new IllegalArgumentException("County ID must be a non-zero, positive integer.");
+        }
+        if(countyName.equals("") || stateName.equals(""))
+        {
+            throw new IllegalArgumentException("Either county name or state name are empty. These are required fields.");
+        }
+        this.countyID = countyID;
+		this.countyName = countyName;
+		this.stateName = stateName;
 	}
 	
 	public void setCountyID(int countyID)
