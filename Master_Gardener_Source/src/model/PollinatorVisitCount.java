@@ -7,10 +7,6 @@ public class PollinatorVisitCount
 	
 	public PollinatorVisitCount(int count)
 	{
-		if(count < 0)
-		{
-			throw new IllegalArgumentException("The minimum visit count must be positive or zero.");
-		}
 		this.count = count;
 	}
 	

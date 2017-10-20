@@ -1,8 +1,9 @@
-// Alex - I believe this is all old stuff from Logan's CS320 project, and as such I'm only keeping this here as
-// source material for anyone else who believes they need it
-
 package model;
+
+
 import java.util.ArrayList;
+
+import model.Account;
 
 public class Group {
 	
@@ -91,15 +92,17 @@ public class Group {
 	public Boolean userisMod(Account account){
 		if(this.moderators.contains(account)){
 			return true;
-		} else
-		{
-			return false;
 		}
+		else
+			return false;
 	}
 
 	
 	// need discussion on how to remove posts, edit posts, remove user, accept user
 	
 	
-
+	
+	
+	
+	
 }

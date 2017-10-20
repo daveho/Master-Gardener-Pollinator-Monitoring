@@ -2,9 +2,6 @@ package model;
 
 import java.util.Random;
 
-// Alex - I was going to create my own user page but this was already here, so for now we'll use this while keeping
-// in mind that it's subject to change.
-
 public class Account {
 	private int userId;
 	private String username = null;
@@ -14,6 +11,7 @@ public class Account {
 	private String email = null;
 	private String description = null;
 
+	
 	public Account(String username, String password, int id, String name, String email, String description){
 		this.username = username;
 		this.password = password;
@@ -32,9 +30,14 @@ public class Account {
 		this.description = "";
 	}
 	
+	
 	/*
 	 * ------------------------GETTERS AND SETTERS---------------------------------
 	 */
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	
 	public int getUserId() {
 		return userId;
@@ -62,10 +65,6 @@ public class Account {
 	
 	public String getDescription(){
 		return this.description;
-	}
-	
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 	
 	public void setUsername(String user){

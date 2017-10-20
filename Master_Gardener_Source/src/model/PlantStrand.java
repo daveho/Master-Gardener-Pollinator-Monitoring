@@ -6,10 +6,6 @@ public class PlantStrand
 
 	public PlantStrand(String strand_name)
 	{
-		if(strand_name.equals(""))
-		{
-			throw new IllegalArgumentException("Strand name is a required argument.");
-		}
 		this.strand_name = strand_name;
 	}
 	

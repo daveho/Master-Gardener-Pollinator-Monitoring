@@ -2,31 +2,23 @@ package model;
 
 public class Garden
 {
-	private int garden_id = -1;
 	private String address = "";
+	private int GardenID;
+	private String GardenContact = ""; // Person who is head of the Garden to contact for questions or information.
 	
-	public Garden(int garden_id, String address)
+	public Garden() {
+		this.address = "";
+		
+		
+	}
+	
+	
+	
+	public Garden(String address)
 	{
-		if(address.equals(""))
-		{
-			throw new IllegalArgumentException("The garden must have an address, no blank spaces.");
-		}
-		if(garden_id <= 0)
-		{
-			throw new IllegalArgumentException("GardenID must be a non-zero positive integer.");
-		}
-		this.garden_id = garden_id;
 		this.address = address;
 	}
-
-	public int getGarden_id()
-	{
-		return this.garden_id;
-	}
-	public void setGarden_id(int garden_id)
-	{
-		this.garden_id = garden_id;
-	}
+	
 	public String getGardenAddress()
 	{
 		return this.address;
@@ -35,6 +27,30 @@ public class Garden
 	public void setGardenAddress(String address)
 	{
 		this.address = address;
+	}
+
+
+
+	public int getGardenID() {
+		return this.GardenID;
+	}
+
+
+
+	public void setGardenID(int gardenID) {
+		this.GardenID = gardenID;
+	}
+
+
+
+	public String getGardenContact() {
+		return this.GardenContact;
+	}
+
+
+
+	public void setGardenContact(String gardenContact) {
+		this.GardenContact = gardenContact;
 	}
 	
 }

@@ -1,4 +1,3 @@
-
 package database;
 
 public class PersistenceException extends RuntimeException {
@@ -12,4 +11,3 @@ public class PersistenceException extends RuntimeException {
 		super(msg, cause);
 	}
 }
-

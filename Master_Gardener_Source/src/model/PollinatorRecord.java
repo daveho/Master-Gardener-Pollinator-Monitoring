@@ -6,10 +6,6 @@ public class PollinatorRecord
 	
 	public PollinatorRecord(int week_number)
 	{
-		if(week_number <= 0)
-		{
-			throw new IllegalArgumentException("Week number must be a non-zero positive integer.");
-		}
 		this.week_number = week_number;
 	}
 	
