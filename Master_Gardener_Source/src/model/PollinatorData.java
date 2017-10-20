@@ -1,8 +1,12 @@
 // Alex- This class replaces Calendar and Weather classes. Maybe. I don't know if we'll use this but it's here.
 package model;
 
+import java.util.ArrayList;
+
 public class PollinatorData
 {
+	
+	// probably have a garden id to tie each table of pollinator data to a garden
 	private int WeekID;
 	private Date date;
 	private int time_start = -1, time_stop = -1, temperature = -1;
@@ -19,18 +23,10 @@ public class PollinatorData
 	 * @param month - Month (Integer, 1-12) of the year.
 	 * @param year - Year (Integer, eg. 2017)
 	 */
+
 	public PollinatorData(int time_start, int time_stop, int temperature, String cloud, String wind, int day,
 			int month, int year)
 	{
-		/*if (time_start < 0 || time_start >= 2400 || time_stop < 0 || time_stop > 2400 || time_start < time_stop || temperature <= -459.67 || cloud.equals("")
-				|| wind.equals(""))
-		{
-			throw new IllegalArgumentException("There is one or more illegal argument(s).\n" +
-					"Time Start/Stop must be a number between 0000 and 2400. It's also likely that start time should be less than stop time.\n" +
-					"Temperature must be a real number ie. not less than 0 kelvin (-459.67 fahrenheit)\n" +
-					"The Cloud/Wind arguments must not be empty.");
-		}*/
-		// day/month/year error checking is done in the date class
 		this.date = new Date(day, month, year);
 		this.time_start = time_start;
 		this.time_stop = time_stop;

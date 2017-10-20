@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Account;
+import model.County;
+import model.Garden;
 import model.Group;
 import model.GroupMember;
 import model.PollinatorData;
@@ -24,7 +26,7 @@ public class InitialData {
 					break;
 				}
 				Iterator<String> i = tuple.iterator();
-				Account account = new Account("Egg", "12345678", userId, "memes", "memes", "memes");
+				Account account = new Account(null, null, userId, null, null, null);
 				account.setUserId(userId++);
 				account.setUsername(i.next());
 				account.setPassword(i.next());
@@ -115,7 +117,7 @@ public class InitialData {
 	}
 	
 	// pollinater data stuff
-	/*public static List<PollinatorData> getPollinatorData() throws IOException {
+	public static List<PollinatorData> getPollinatorData() throws IOException {
 		List<PollinatorData> pollinatorList = new ArrayList<PollinatorData>();
 		ReadCSV readPollinatorData = new ReadCSV("Pollinatordata.csv");
 		try {
@@ -132,11 +134,68 @@ public class InitialData {
 				PollinatorData.setTimeStart(Integer.parseInt(i.next()));
 				PollinatorData.setTimeStop(Integer.parseInt(i.next()));
 				pollinatorList.add(PollinatorData);
-
 			}
 			return pollinatorList;
 		} finally {
 			readPollinatorData.close();
 		}
-	}*/
+	}
+	
+	public static List<County> getCounties() throws IOException {
+		List<County> countyList = new ArrayList<County>();
+		ReadCSV readCountyData = new ReadCSV("CountyData.csv");
+		try {
+			// auto-generated primary key for posts table
+			Integer CountyID = 1;
+			while (true) {
+				List<String> tuple = readCountyData.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				County CountyData= new County();
+				CountyData.setCountyID(CountyID++);
+				CountyData.setCountyName(i.next());
+				CountyData.setStateName(i.next());
+				countyList.add(CountyData);
+			}
+			return countyList;
+		} finally {
+			readCountyData.close();
+		}
+	}
+	
+	public static List<Garden> getGarden() throws IOException {
+		List<Garden> GardenList = new ArrayList<Garden>();
+		ReadCSV readGardenData = new ReadCSV("GardenData.csv");
+		try {
+			// auto-generated primary key for posts table
+			Integer GardenID = 1;
+			while (true) {
+				List<String> tuple = readGardenData.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				Garden GardenData= new Garden();
+				GardenData.setGardenID(GardenID++);
+				GardenData.setGardenAddress(i.next());
+				GardenData.setGardenContact(i.next());
+				GardenList.add(GardenData);
+			}
+			return GardenList;
+		} finally {
+			readGardenData.close();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }

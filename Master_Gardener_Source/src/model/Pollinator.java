@@ -13,26 +13,14 @@ public class Pollinator
 	private String pollinatorName;
 	private String pollinatorType;
 	
-	// This variable (below) might not be necessary, therefore it's documented here in the event that it is.
+	// This might not be necessary, therefore it's documented here in the event that it is.
 	// It doesn't seem like it will be though. Don't take my word on that. You don't know who wrote 
 	// this comment. Go away.
 	//private int weekNumber;
 	
-	public Pollinator(int pollinator_id, String pollinator_name, String pollinator_type)
+	public Pollinator()
 	{
-		if(pollinator_id <= 0)
-		{
-			throw new IllegalArgumentException("Pollinator ID must be a non-zero positive integer.");
-		}
-
-		if(pollinator_name.equals("") || pollinator_type.equals(""))
-		{
-			throw new IllegalArgumentException("Pollinator Name/Type are required fields.");
-		}
-
-		this.pollinatorID = pollinator_id;
-		this.pollinatorName = pollinator_name;
-		this.pollinatorType = pollinator_type;
+		
 	}
 	
 	public void setPollinatorID(int pollinatorid)
@@ -56,7 +44,7 @@ public class Pollinator
 	{
 		return this.pollinatorName;
 	}
-	public String getPollinatorType()
+	public String geetPollinatorType()
 	{
 		return this.pollinatorType;
 	}
