@@ -115,7 +115,7 @@ public class InitialData {
 	}
 	
 	// pollinater data stuff
-	public static List<PollinatorData> getPollinatorData() throws IOException {
+	/*public static List<PollinatorData> getPollinatorData() throws IOException {
 		List<PollinatorData> pollinatorList = new ArrayList<PollinatorData>();
 		ReadCSV readPollinatorData = new ReadCSV("Pollinatordata.csv");
 		try {
@@ -138,5 +138,5 @@ public class InitialData {
 		} finally {
 			readPollinatorData.close();
 		}
-	}
+	}*/
 }

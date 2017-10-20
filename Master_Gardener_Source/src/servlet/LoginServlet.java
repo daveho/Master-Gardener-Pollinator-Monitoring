@@ -40,13 +40,12 @@ public class LoginServlet extends HttpServlet {
 
 		buttonPress = req.getParameter("loginSubmit");
 		
-
 		if(buttonPress != null){
 			if(buttonPress.toLowerCase().equals("logout")){
 				req.getSession().setAttribute("loggedin",false);
 				req.getSession().setAttribute("username", null);
 				req.getSession().setAttribute("login_id", -1);
-				req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+				resp.sendRedirect(req.getContextPath()+"/home");
 			}
 			else if(buttonPress.toLowerCase().equals("login")){
 
@@ -66,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 						req.setAttribute("loggedin", loggedin);
 					}
 					else{
-						errorMessage = "Invalid username or password.";
+						errorMessage = "Invalid username or password, please try again..";
 					}
 				}
 
@@ -83,9 +82,5 @@ public class LoginServlet extends HttpServlet {
 				}
 			}
 		}
-		else{
-			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-		}
 	}
-
 }

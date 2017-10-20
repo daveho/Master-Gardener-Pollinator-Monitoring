@@ -18,8 +18,7 @@ public class GroupController {
 	private IDatabase database = null;
 
 	public GroupController() {
-
-		// creating DB instance here
+		
 		DatabaseProvider.setInstance(new DerbyDatabase());
 		database = DatabaseProvider.getInstance();		
 	}
@@ -28,15 +27,9 @@ public class GroupController {
 		return this.database.queryForUserAccountByUsername(username);
 	}
 
-	public List<Post> getpostsbyUserandGroups(String user){
-		return null;
-	}
-
 	public List<Group> getUsersGroups(String user) throws SQLException {
 
-
 		List<Group> groups = database.getGroupsByUser(user);
-
 
 		if (groups.isEmpty()) {
 			System.out.println("No groups in database for that user");
@@ -86,6 +79,4 @@ public class GroupController {
 		worked = database.insertNewGroupMemberIntoDatabase(groupMember);
 		return worked;
 	}
-	
-	
 }

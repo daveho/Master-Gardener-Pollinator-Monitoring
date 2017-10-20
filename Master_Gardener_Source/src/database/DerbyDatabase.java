@@ -905,6 +905,7 @@ public class DerbyDatabase implements IDatabase {
 							);
 					stmt4.executeUpdate();
 					
+					/*
 					//CREATING PollinatorData
 					stmt5 = conn.prepareStatement(
 							"create table PollinatorData (" +
@@ -913,7 +914,7 @@ public class DerbyDatabase implements IDatabase {
 					//				"   link to garden_id ) " +
 									")"
 							);
-					stmt5.executeUpdate();
+					stmt5.executeUpdate();*/
 					
 
 					return true;
@@ -977,14 +978,14 @@ public class DerbyDatabase implements IDatabase {
 				List<Group> groupList;
 				List<GroupMember> groupMemberList;
 				List<Post> postList;
-				List<PollinatorData> PollinatorList;
+				//List<PollinatorData> PollinatorList;
 				
 				try {
 					accountList = InitialData.getAccounts();
 					groupList = InitialData.getGroups();
 					groupMemberList = InitialData.getGroupMembers();
 					postList = InitialData.getPosts();
-					PollinatorList = InitialData.getPollinatorData();
+					//PollinatorList = InitialData.getPollinatorData();
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
@@ -993,7 +994,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertGroup   = null;
 				PreparedStatement insertGroupMember   = null;
 				PreparedStatement insertPost   = null;
-				PreparedStatement insertPollinatorData = null;
+				//PreparedStatement insertPollinatorData = null;
 
 				try {
 					// populate accounts table (accounts first, since account_id is foreign key in groupMembers table)
@@ -1039,14 +1040,14 @@ public class DerbyDatabase implements IDatabase {
 					}
 					insertPost.executeBatch();
 					
-	// insert pollinator data into initial DB
+					/*// insert pollinator data into initial DB
 					insertPollinatorData = conn.prepareStatement("insert into PollinatorData (start_time, stop_time) values (?, ?)");
 					for (PollinatorData pollinatordata : PollinatorList) {
 						insertPollinatorData.setInt(1, pollinatordata.getTimeStart());
 						insertPollinatorData.setInt(2, pollinatordata.getTimeStop());
 						insertPollinatorData.addBatch();
 					}
-					insertPollinatorData.executeBatch();
+					insertPollinatorData.executeBatch();*/
 
 					return true;
 				} finally {
@@ -1054,7 +1055,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(insertGroup);
 					DBUtil.closeQuietly(insertGroupMember);
 					DBUtil.closeQuietly(insertPost);
-					DBUtil.closeQuietly(insertPollinatorData);
+					//DBUtil.closeQuietly(insertPollinatorData);
 				}
 			}
 		});

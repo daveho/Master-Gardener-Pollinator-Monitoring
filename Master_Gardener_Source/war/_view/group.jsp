@@ -8,7 +8,7 @@
 <meta name="generator"
 	content="Script Eden ( http://scripteden.net/ ) Template Builder v2.0.0">
 <c:forEach items="${groups}" var="group">
-	<title>${group.name} - Master Gardeners</title>
+	<title>${group.name} - Master Gardener</title>
 </c:forEach>
 
 <!--pageMeta-->
