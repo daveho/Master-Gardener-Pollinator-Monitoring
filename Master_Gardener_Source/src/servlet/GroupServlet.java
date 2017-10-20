@@ -20,7 +20,6 @@ import model.Group;
 import model.GroupMember;
 import model.Post;
 
-
 public class GroupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private GroupController controller = null;
@@ -31,7 +30,7 @@ public class GroupServlet extends HttpServlet {
 		
 		String user = (String)req.getSession().getAttribute("username");
 		if (user == null) {
-			System.out.println("   User: <" + user + "> not logged in or session timed out");
+			System.out.println("User not logged in or session timed out");
 
 			// user is not logged in, or the session expired
 			resp.sendRedirect(req.getContextPath() + "/login");
@@ -51,19 +50,16 @@ public class GroupServlet extends HttpServlet {
 			else{
 				groups = controller.getGroupbyID(thisgroup);
 				posts = controller.getPostsbyGroupID(thisgroup);
-				//System.out.println(posts.get(0).getText()+"\n"+posts.get(1).getText());
-
-				
 			}
 		} catch (SQLException e) {
-
+			 e.printStackTrace();
 		}
 		
 		controller = new GroupController();
 		try {
 			groups2 = controller.getUsersGroups(user);
 		} catch (SQLException e) {
-			
+			 e.printStackTrace();
 		}
 		
 		Account account = new Account();
@@ -74,10 +70,8 @@ public class GroupServlet extends HttpServlet {
 		req.setAttribute("groups2", groups2);
 		req.setAttribute("posts", posts);
 		req.setAttribute("account", account);
-
-		req.getRequestDispatcher("/_view/group.jsp").forward(req, resp);		
+		req.getRequestDispatcher("/_view/group.jsp").forward(req, resp);
 	}
-
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -86,7 +80,6 @@ public class GroupServlet extends HttpServlet {
 		String button = null;
 		String post = null;
 		
-		
 		button = req.getParameter("postSubmit");
 		
 		if(button != null){
@@ -94,7 +87,7 @@ public class GroupServlet extends HttpServlet {
 			post = req.getParameter("newPost");
 			String user = (String)req.getSession().getAttribute("username");
 			int thisgroup = (int) req.getSession().getAttribute("GroupID");
-			controller.addPost(post, thisgroup , user);
+			controller.addPost(post, thisgroup, user);
 			List<Group> groups = new ArrayList<Group>();
 			try {
 				groups = controller.getGroupbyID(thisgroup);
@@ -105,6 +98,7 @@ public class GroupServlet extends HttpServlet {
 			List<Pair<Account, Post>> posts = controller.getPostsbyGroupID(thisgroup);
 			req.setAttribute("posts", posts);
 			req.setAttribute("account", req.getAttribute("account"));
+			req.getRequestDispatcher("/_view/group.jsp").forward(req, resp);
 		}
 		
 		String button2 = null;
@@ -119,53 +113,27 @@ public class GroupServlet extends HttpServlet {
 			UserController controller = new UserController();
 			account = controller.returnAccountForUsername(user);
 		
-
 			GroupMember groupMember = new GroupMember(thisgroup, account.getUserId());
 			GroupMemberController controller2 = new GroupMemberController();
 		
-			if(controller2.createGroupMember(groupMember)){
-				
-				req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+			if(controller2.addGroupMember(groupMember)){
+				resp.sendRedirect(req.getContextPath()+"/user");
 			}
 		}
-	
-		
-		/*String button2 = null;
-		
-		button2 = req.getParameter("memberSubmit");
-		
-		if(button2 != null){
-			GroupController controller = new GroupController();
-			String user = (String)req.getSession().getAttribute("username");
-			int thisgroup = (int) req.getSession().getAttribute("GroupID");
-			controller.addGroupMember(thisgroup, user);
-			List<Group> newGroup = new ArrayList<Group>();
-			try {
-				newGroup = controller.getGroupbyID(thisgroup);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			req.setAttribute("groups", newGroup);
-		}*/
 		
 		int groupID = 0;
-		//String user2 = (String)req.getSession().getAttribute("username");
 		UserController controller3 = new UserController();
 		String buttonPress = req.getParameter("Submit");
 		
 		if(buttonPress != null){
 			try{
-			groupID = controller3.getGroupIDbyGroupname(buttonPress);
-			req.getSession().setAttribute("GroupID", groupID);
-			resp.sendRedirect(req.getContextPath()+"/group");
-			return;
+				groupID = controller3.getGroupIDbyGroupname(buttonPress);
+				req.getSession().setAttribute("GroupID", groupID);
+				resp.sendRedirect(req.getContextPath()+"/group");
+				return;
 			}catch (SQLException e){
-				
+				e.printStackTrace();
 			}
-			
 		}
-		
-
-		req.getRequestDispatcher("/_view/group.jsp").forward(req, resp);
 	}
 }

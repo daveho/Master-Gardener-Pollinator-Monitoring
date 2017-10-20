@@ -23,25 +23,21 @@ public class SearchController {
 		database = DatabaseProvider.getInstance();		
 	}
 
-	
 	public List<Group> getGroupsLike(String keyword) throws SQLException {
-		System.out.println("reached controller with keyword "+keyword);
-		// get the list of (Author, Book) pairs from DB
+		
 		List<Group> groups = database.getGroupsLikeKeyword(keyword);
-		for(int x = 0; x < groups.size(); x++){
-			System.out.println(groups.get(x).getName());
-		}
-
 		if (groups.isEmpty()) {
-			System.out.println("No groups in database like that keyword");
+			System.out.println("No groups found that match the keyphrase provided");
 			return null;
 		}
 		else {
+			for(int x = 0; x < groups.size(); x++){
+				System.out.println("Matching groups:");
+				System.out.println(groups.get(x).getName());
+			}
 			return groups;
 		}			
-
 	}
-
 
 	public int getGroupIDbyGroupname(String name) {
 		List<Group> group = database.getGroupbyGroupName(name);

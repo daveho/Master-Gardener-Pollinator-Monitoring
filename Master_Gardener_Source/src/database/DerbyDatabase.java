@@ -1177,10 +1177,9 @@ public class DerbyDatabase implements IDatabase {
 					);
 					stmt4.executeUpdate();
 
-					
 					// TODO: Check this
 					// Create Gardens Table
-					stmt5 = conn.prepareStatement(
+          stmt5 = conn.prepareStatement(
 							"create table gardens (" +
 									"garden_id integer primary key " +
 									"	generated always as identity (start with 1, increment by 1), " +
@@ -1280,7 +1279,6 @@ public class DerbyDatabase implements IDatabase {
 					postList = InitialData.getPosts();
 					// TODO: Garden List
 					// TODO: County List
-
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}

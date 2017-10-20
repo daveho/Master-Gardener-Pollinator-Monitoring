@@ -19,7 +19,6 @@ public class UserController {
 	private IDatabase database = null;
 
 	public UserController() {
-
 		// creating DB instance here
 		DatabaseProvider.setInstance(new DerbyDatabase());
 		database = DatabaseProvider.getInstance();		
@@ -30,23 +29,17 @@ public class UserController {
 	}
 	
 	public List<Group> getUsersGroups(String user) throws SQLException {
-
-		
-		// get the list of (Author, Book) pairs from DB
 		List<Group> groups = database.getGroupsByUser(user);
 		System.out.println("User's Groups:");
 		for(int x = 0; x < groups.size(); x++)
 		{
-			if(x == groups.size())
-			{
+			if(x == groups.size()){
 				System.out.println(groups.get(x).getName() + "\n");
 			}
-			else
-			{
+			else{
 				System.out.println(groups.get(x).getName());
 			}
 		}
-
 		if (groups.isEmpty()) {
 			System.out.println("No groups in database for that user");
 			return null;
@@ -54,16 +47,13 @@ public class UserController {
 		else {
 			return groups;
 		}			
-
 	}
 	
 	public int getGroupIDbyGroupname(String name) throws SQLException{
 		List<Group> group = database.getGroupbyGroupName(name);
 		int groupID = 0;
 		groupID = group.get(0).getGroupId();
-		System.out.println("Redirecting to "+groupID);
+		System.out.println("Redirecting to Group ID #"+groupID);
 		return groupID;
-		
 	}
-	
 }

@@ -1,4 +1,3 @@
-
 package servlet;
 
 import java.io.IOException;
@@ -11,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.DataController;
+import controller.SearchController;
 //import controller.UserController;
 //import model.Account;
 import model.Group;
 
 public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DataController controller = null;
+	private SearchController controller = null;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
 				
-		controller = new DataController();
+		controller = new SearchController();
 		String keyword;
 		keyword = (String) req.getSession().getAttribute("keyword");
 		List<Group> groups = null;
@@ -34,19 +33,13 @@ public class SearchServlet extends HttpServlet {
 			}
 			else{
 			groups = controller.getGroupsLike(keyword);
-			
 			}
-			
-			
-			
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 		req.setAttribute("groups", groups);
-		
 		req.getRequestDispatcher("/_view/search.jsp").forward(req, resp);	
 	}
-	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -56,32 +49,13 @@ public class SearchServlet extends HttpServlet {
 		String buttonPress = req.getParameter("Submit");
 		
 		if(buttonPress != null){
-			DataController controller = new DataController();
+			SearchController controller = new SearchController();
 			groupID = controller.getGroupIDbyGroupname(buttonPress);
 			req.getSession().setAttribute("GroupID", groupID);
 			resp.sendRedirect(req.getContextPath()+"/group");
 			return;
 			
 		}
-		
-
 		req.getRequestDispatcher("/_view/search.jsp").forward(req, resp);	
 	}
-
 }
-
-/*
- * String keyword=null;
-		keyword = req.getParameter("keyword");
-		//System.out.println("reached servlet with keyword "+keyword);
-		List<Group> groups = null;
-		controller = new SearchController();
-		try {
-			groups = controller.getGroupsLike(keyword);
-		}
-		catch (SQLException e) {
-		}
-		req.setAttribute("groups", groups);
-		
-
-		*/

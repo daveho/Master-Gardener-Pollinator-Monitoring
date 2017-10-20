@@ -1,4 +1,3 @@
-
 package servlet;
 
 import java.io.IOException;
@@ -27,3 +26,6 @@ public class EditGroupServlet extends HttpServlet {
 			req.getRequestDispatcher("/_view/editGroup.jsp").forward(req, resp);
 	}
 }
+
+
+

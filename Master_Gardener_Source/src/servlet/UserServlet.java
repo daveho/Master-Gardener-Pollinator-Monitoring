@@ -14,7 +14,6 @@ import controller.UserController;
 import model.Account;
 import model.Group;
 
-
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserController controller = null;
@@ -23,10 +22,9 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		
 		String user = (String) req.getSession().getAttribute("username");
 		if (user == null) {
-			System.out.println("   User: <" + user + "> not logged in or session timed out");
+			System.out.println("User not logged in or session timed out");
 			
 			// user is not logged in, or the session expired
 			resp.sendRedirect(req.getContextPath() + "/login");
@@ -45,14 +43,11 @@ public class UserServlet extends HttpServlet {
 		Account account = new Account();
 		controller = new UserController();
 		account = controller.returnAccountForUsername(user);
-		
 		req.setAttribute("account", account);
 		
-		
-			req.getRequestDispatcher("/_view/user.jsp").forward(req, resp);	
+		req.getRequestDispatcher("/_view/user.jsp").forward(req, resp);	
 		}
 	
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -68,9 +63,8 @@ public class UserServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath()+"/group");
 			return;
 			}catch (SQLException e){
-				
+				e.printStackTrace();
 			}
-			
 		}
 		
 		if(keyword != null){
@@ -78,12 +72,6 @@ public class UserServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath()+"/search");
 			return;
 		}
-		
-		
-		
-		
-		
-		
 		req.getRequestDispatcher("/_view/user.jsp").forward(req, resp);
 	}
 }
