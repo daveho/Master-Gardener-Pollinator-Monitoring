@@ -41,3 +41,5 @@ Jetty/bin
 Jetty/_project
 /.metadata
 /.idea
+Jetty/.classpath
+Derby/.classpath
