@@ -3,6 +3,7 @@ body {
   height: 100vh;
   background-image: url('../images/LoginBackground.jpg');
   background-size: cover;
+  overflow: hidden;
 }
 
 @keyframes spinner {
