@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Script Eden ( http://scripteden.net/ ) Template Builder v2.0.0">  
-    <title>${account.name} - Master Gardener</title>
+    <title>Edit ${account.name} - Master Gardener</title>
     <!--pageMeta-->
 
     <!-- Loading Bootstrap -->

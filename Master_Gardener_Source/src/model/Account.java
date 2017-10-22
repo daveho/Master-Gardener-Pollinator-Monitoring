@@ -14,17 +14,7 @@ public class Account {
 	private String email = null;
 	private String description = null;
 
-	
 	public Account(String username, String password, int id, String name, String email, String description){
-		/*if(username.equals("") || password.length() < 8 || id <= 0 || name.equals("") || email.equals("") || description.equals(""))
-		{
-			throw new IllegalArgumentException("There is an error with one or more argument(s).\n" +
-					"Username is a required field.\n" +
-					"Password requires AT LEAST 8 characters.\n" +
-					"ID must be a non-zero positive integer.\n" +
-					"Name/Email/Description are all required fields.");
-		} */
-
 		this.username = username;
 		this.password = password;
 		this.loginId = id;
@@ -42,14 +32,9 @@ public class Account {
 		this.description = "";
 	}
 	
-	
 	/*
 	 * ------------------------GETTERS AND SETTERS---------------------------------
 	 */
-	
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 	
 	public int getUserId() {
 		return userId;
@@ -77,6 +62,10 @@ public class Account {
 	
 	public String getDescription(){
 		return this.description;
+	}
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	public void setUsername(String user){

@@ -38,16 +38,38 @@ public class DateTest {
     }
 
     @Test
+    public void setDayTest()
+    {
+    	d1.setDay(23);
+    	assertEquals(d1.getDay(), 23);
+    }
+    
+    @Test
     public void getMonthTest()
     {
         assertEquals(d1.getMonth(), 11);
         assertEquals(d2.getMonth(), 2);
     }
+    
+    @Test
+    public void setMonthTest()
+    {
+    	d1.setMonth(11);
+    	assertEquals(d1.getMonth(), 11);
+    }
+    
     @Test
     public void getYearTest()
     {
         assertEquals(d1.getYear(), 2015);
         assertEquals(d2.getYear(), 2013);
+    }
+    
+    @Test
+    public void setYearTest()
+    {
+    	d1.setYear(2014);
+    	assertEquals(d1.getYear(), 2014);
     }
 
 }

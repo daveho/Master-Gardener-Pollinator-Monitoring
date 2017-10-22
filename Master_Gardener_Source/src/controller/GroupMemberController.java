@@ -15,7 +15,7 @@ public class GroupMemberController {
 		database = DatabaseProvider.getInstance();
 	}
 	
-	public boolean createGroupMember(GroupMember groupMember){
+	public boolean addGroupMember(GroupMember groupMember){
 		return this.database.insertNewGroupMemberIntoDatabase(groupMember);
 	}
 }

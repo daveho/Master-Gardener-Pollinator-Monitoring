@@ -17,7 +17,6 @@ public class LoginController {
 		database = DatabaseProvider.getInstance();
 	}
 	
-	
 	public boolean handleLoginCheck(HttpServletRequest req){
 		String user = ObjectHandler.castObject(req.getSession().getAttribute("username"));
 		if(user != null){
@@ -34,8 +33,7 @@ public class LoginController {
 		return false;
 	}
 	
-	
-	//returns new login id
+	// Returns new login id
 	public int validateLogin(String username, int loginId){
 		int persistantLoginId = this.database.queryForLoginIdByUsername(username);
 		Account account = this.database.queryForUserAccountByUsername(username);
@@ -49,7 +47,7 @@ public class LoginController {
 		return account.getLoginId();
 	}
 
-	//return new login id
+	// Return new login id
 	public int loginUser(String username, String password){
 		int loginId = -1;
 		String pass = this.database.queryForPasswordByUsername(username);

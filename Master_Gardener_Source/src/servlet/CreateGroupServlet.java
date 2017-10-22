@@ -19,7 +19,7 @@ public class CreateGroupServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);	
-		}
+	}
 
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
@@ -39,38 +39,40 @@ public class CreateGroupServlet extends HttpServlet {
 			errorMessage = "Invalid Group name, please re-enter";
 			System.out.printf("%s", errorMessage);
 			name = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
 		}
 		else if("".equals(description) || description == null){
 			errorMessage = "Invalid Description, please re-enter";
 			System.out.printf("%s", errorMessage);
 			description = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
 		}
 
 		else if("".equals(rating) || rating == 0){
 			errorMessage = "Invalid Rating, please re-enter";
 			System.out.printf("%s", errorMessage);
-			rating = 0;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
 		}
-
 		else{
 			Group group = new Group(name, description, rating);
 			CreateGroupController controller = new CreateGroupController();
 
 			if(controller.createGroup(group)){
 				req.setAttribute("group", group);
-				req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+				req.getRequestDispatcher("/_view/user.jsp").forward(req, resp);
 			}
 			else{
-				errorMessage = "Unexpected Error.";
+				errorMessage = "Unexpected Error";
+				req.setAttribute("errorMessage", errorMessage);
+				req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
 			}
 		}
-
 		req.setAttribute("groupname", name);
 		req.setAttribute("description", description);
 		req.setAttribute("rating", rating);
-		req.setAttribute("errorMessage", errorMessage);
-
-		req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
 	}
 	
 	private int getIntFromParameter(String s){

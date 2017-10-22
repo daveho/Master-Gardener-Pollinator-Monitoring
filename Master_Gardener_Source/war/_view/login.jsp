@@ -4,7 +4,7 @@
 <html >
 <head>
 
-  <title>Master Gardener - Login</title>
+  <title>Login - Master Gardener</title>
 	<link rel="icon" type="image/jpg" href="images/nittany_lions_logo.jpg">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

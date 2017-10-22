@@ -25,4 +25,11 @@ public class PollinatorVisitCountTest {
         assertEquals(p1.getCount(), 5);
     }
 
+    @Test
+    public void setPollinatorVisitCountTest()
+    {
+    	p1.setCount(42);
+    	assertEquals(p1.getCount(), 42);
+    }
+    
 }

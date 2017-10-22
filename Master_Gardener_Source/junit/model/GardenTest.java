@@ -27,8 +27,23 @@ public class GardenTest {
     }
 
     @Test
-    public void getGardenID()
+    public void setGardenAddressTest()
+    {
+    	g1.setGardenAddress("420 meme avenue");
+    	assertEquals(g1.getGardenAddress(), "420 meme avenue");
+    }
+    
+    @Test
+    public void getGardenIDTest()
     {
         assertEquals(g1.getGarden_id(), 2);
     }
+    
+    @Test
+    public void setGardenIDTest()
+    {
+    	g1.setGarden_id(42);
+    	assertEquals(g1.getGarden_id(), 42);
+    }
+    
 }

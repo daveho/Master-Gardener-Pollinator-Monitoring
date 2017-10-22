@@ -18,50 +18,7 @@ public class SignupServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String username = req.getParameter("Username");
-		String password = req.getParameter("Password");
-		String button = req.getParameter("buttonPress");
-		
-		if(button != null){
-			if(button.toLowerCase().equals("sign up")){
-				req.setAttribute("username", username);
-				req.setAttribute("password", password);
-				req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
-			}
-			else if(button.toLowerCase().equals("login")){
-				boolean loggedin = false;
-				String errorMessage = null;
-				LoginController login = new LoginController();
-				int loginId = login.loginUser(username, password);
-				
-				if(loginId>=0){
-					req.getSession().setAttribute("username", username);
-					req.getSession().setAttribute("login_id", loginId);
-					loggedin = true;
-					req.setAttribute("loggedin", loggedin);
-				}
-				else{
-					errorMessage = "Invalid username or password, please try again.";
-				}
-				
-				if(loggedin){
-					
-					req.setAttribute("account", login.returnAccountForUsername(username));
-					req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
-				}
-				else{
-					req.setAttribute("username",username);
-					req.setAttribute("errorMessage", errorMessage);
-					req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-				}
-			}
-			else{
-				req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
-			}
-		}	
-		else{
-			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
-		}
+		req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -75,7 +32,6 @@ public class SignupServlet extends HttpServlet {
 		String email = null;
 		String bio = null;
 		String errorMessage = null;
-		//boolean loggedin = false;
 
 		user = req.getParameter("username");
 		pass1 = req.getParameter("pass1");
@@ -85,57 +41,73 @@ public class SignupServlet extends HttpServlet {
 		bio = req.getParameter("bio");
 
 		if("".equals(user) || user == null){
-			errorMessage = "Invalid Username, please re-enter";
-			System.out.printf("%s", errorMessage);
+			errorMessage = "Invalid username, please re-enter";
+			System.out.println(errorMessage);
 			user = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 		}
 		else if("".equals(pass1) || pass1 == null){
-			errorMessage = "Invalid Password, please re-enter";
-			System.out.printf("%s", errorMessage);
+			errorMessage = "Invalid password, please re-enter";
+			System.out.println(errorMessage);
 			pass1 = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 		}
-
 		else if("".equals(pass2) || pass2 == null){
-			errorMessage = "Passwords don't match, please re-enter";
-			System.out.printf("%s", errorMessage);
+			errorMessage = "Invalid confirmation password, please re-enter";
+			System.out.println(errorMessage);
 			pass2 = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 		}
-
 		else if(!pass2.equals(pass1)){
 			errorMessage = "Passwords don't match, please re-enter";
-			System.out.printf("%s", errorMessage);
+			System.out.println(errorMessage);
 			pass2 = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 		}
-
 		else if("".equals(name) || name == null){
-			errorMessage = "Please re-enter Name";
-			System.out.printf("%s", errorMessage);
+			errorMessage = "Please re-enter name";
+			System.out.println(errorMessage);
 			name = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 		}
-
 		else if("".equals(email) || email == null){
-			errorMessage = "Please re-enter Email";
-			System.out.printf("%s", errorMessage);
+			errorMessage = "Please re-enter email";
+			System.out.println(errorMessage);
 			email = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 		}
-
 		else if("".equals(bio) || bio == null){
-			errorMessage = "Please re-enter Phone Number";
-			System.out.printf("%s", errorMessage);
+			errorMessage = "Please re-enter phonenumber";
+			System.out.println(errorMessage);
 			bio = null;
+			req.setAttribute("errorMessage", errorMessage);
+			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
 		}
 		else{
 			Account account = new Account(user,pass1,-1,name, email, bio);
 			SignupController controller = new SignupController();
 		
 			if(controller.createAccount(account)){
-				
+				req.setAttribute("account", account);
 				req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
-				
 			}
-			
-
-			req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
+			else {
+				errorMessage = "Unexpected Error";
+				req.setAttribute("errorMessage", errorMessage);
+				req.getRequestDispatcher("/_view/signup.jsp").forward(req, resp);
+			}
 		}
+		
+		req.setAttribute("username", user);
+		req.setAttribute("password", pass1);
+		req.setAttribute("name", name);
+		req.setAttribute("email", email);
+		req.setAttribute("bio", bio);
 	}
 }

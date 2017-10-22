@@ -24,7 +24,7 @@ public class InitialData {
 					break;
 				}
 				Iterator<String> i = tuple.iterator();
-				Account account = new Account(null, null, userId, null, null, null);
+				Account account = new Account("Egg", "12345678", userId, "memes", "memes", "memes");
 				account.setUserId(userId++);
 				account.setUsername(i.next());
 				account.setPassword(i.next());
@@ -115,7 +115,7 @@ public class InitialData {
 	}
 	
 	// pollinater data stuff
-	public static List<PollinatorData> getPollinatorData() throws IOException {
+	/*public static List<PollinatorData> getPollinatorData() throws IOException {
 		List<PollinatorData> pollinatorList = new ArrayList<PollinatorData>();
 		ReadCSV readPollinatorData = new ReadCSV("Pollinatordata.csv");
 		try {
@@ -138,5 +138,5 @@ public class InitialData {
 		} finally {
 			readPollinatorData.close();
 		}
-	}
+	}*/
 }

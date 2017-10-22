@@ -20,9 +20,16 @@ public class PlantStrandTest {
     }
 
     @Test
-    public void getStrandName()
+    public void getStrandNameTest()
     {
         assertEquals(p1.getStrandName(), "Alex Fly Trap");
     }
 
+    @Test
+    public void setStrandNameTest()
+    {
+    	p1.setStrandName("Alex Tried Trap");
+    	assertEquals(p1.getStrandName(), "Alex Tried Trap");
+    }
+    
 }
