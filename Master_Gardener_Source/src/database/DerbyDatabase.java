@@ -47,7 +47,7 @@ public class DerbyDatabase implements IDatabase {
 
 	/* ----------------------------------------------Query Functions---------------------------------------------- */
 
-	public int queryForLoginIdByUsername(String username){
+	public int queryForLoginIdByUsername(final String username){
 		try{
 			return doQueryLoop(new Query<Integer>(){
 				@Override
@@ -369,7 +369,7 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
-	public boolean updateAccountByUsername(String username, Account account){
+	public boolean updateAccountByUsername(final String username, final Account account){
 		try{
 			return doQueryLoop(new Query<Boolean>(){
 				@Override
@@ -387,7 +387,7 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
-	public List<Group> getGroupbyGroupName(String name){
+	public List<Group> getGroupbyGroupName(final String name){
 		return executeTransaction(new Transaction<List<Group>>() {
 			public List<Group> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
@@ -428,7 +428,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 
-	public List<Group> getGroupbyGroupID(int ID){
+	public List<Group> getGroupbyGroupID(final int ID){
 		return executeTransaction(new Transaction<List<Group>>() {
 			public List<Group> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
@@ -469,7 +469,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 
-	public List<Pair<Account, Post>> getPostsbyGroupID(int ID) {
+	public List<Pair<Account, Post>> getPostsbyGroupID(final int ID) {
 		return executeTransaction(new Transaction <List<Pair<Account, Post>>>() {
 			public List<Pair<Account, Post>> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
@@ -517,7 +517,7 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-	public List<Group> getGroupsLikeKeyword(String keyword){
+	public List<Group> getGroupsLikeKeyword(final String keyword){
 		return executeTransaction(new Transaction<List<Group>>() {
 			@Override
 			public List<Group> execute(Connection conn) throws SQLException {
@@ -595,7 +595,7 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-	public String queryForPasswordByUsername(String username){
+	public String queryForPasswordByUsername(final String username){
 		try{
 			return doQueryLoop(new Query<String>(){
 				@Override
@@ -611,7 +611,7 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
-	public Account queryForUserAccountByUsername(String username){
+	public Account queryForUserAccountByUsername(final String username){
 		try{
 			return doQueryLoop(new Query<Account>(){
 				@Override
@@ -629,7 +629,7 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
-	public boolean insertNewAccountIntoDatabase(Account account){
+	public boolean insertNewAccountIntoDatabase(final Account account){
 		try{
 			return doQueryLoop(new Query<Boolean>(){
 				@Override
@@ -649,7 +649,7 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
-	public boolean insertNewGroupIntoDatabase(Group group){
+	public boolean insertNewGroupIntoDatabase(final Group group){
 		try{
 			return doQueryLoop(new Query<Boolean>(){
 				@Override
@@ -670,7 +670,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 
-	public boolean insertNewPostIntoDatabase(Post post){
+	public boolean insertNewPostIntoDatabase(final Post post){
 		try{
 			return doQueryLoop(new Query<Boolean>(){
 				@Override
@@ -689,7 +689,7 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 
-	public boolean insertNewGroupMemberIntoDatabase(GroupMember groupMember){
+	public boolean insertNewGroupMemberIntoDatabase(final GroupMember groupMember){
 		try{
 			return doQueryLoop(new Query<Boolean>(){
 				@Override
