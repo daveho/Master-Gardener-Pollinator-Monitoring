@@ -17,6 +17,9 @@
 *.zip
 *.tar.gz
 *.rar
+*.eml
+*.iml
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -39,7 +42,13 @@ Jetty/.classpath
 Jetty/.project
 Jetty/bin
 Jetty/_project
-/.metadata
-/.idea
+.metadata
+.idea
 Jetty/.classpath
 Derby/.classpath
+<<<<<<< HEAD
+.recommenders
+
+=======
+.recommenders
+>>>>>>> 65380c1fa25d74fd22fc5e8f224ec2047294dee7

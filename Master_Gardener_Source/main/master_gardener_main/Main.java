@@ -21,17 +21,43 @@ public class Main {
 		
 		// Start the server
 		server.start();
+<<<<<<< HEAD
+
+		// Wait for the user to type "quit" or "restart"
+		System.out.println("Web server started at http://localhost:8081/Master-Gardener/home, type restart/0 to restart or quit/1 \n");
+		Scanner keyboard = new Scanner(System.in);
+		while (keyboard.hasNextLine()) {
+			String line = keyboard.nextLine();
+			if (line.trim().toLowerCase().equals("restart") || line.trim().toLowerCase().equals("0")) {
+				break;
+			} else if (line.trim().toLowerCase().equals("quit") || line.trim().toLowerCase().equals("1")) {
+=======
 		
-		// Wait for the user to type "quit"
+		// Wait for the user to type "quit" or "restart
 		System.out.println("Web server started at http://localhost:8081/Master-Gardener/home, type quit to shut down \n");
 		Scanner keyboard = new Scanner(System.in);
 		while (keyboard.hasNextLine()) {
 			String line = keyboard.nextLine();
+			if (line.trim().toLowerCase().equals("restart")) { 
+				System.out.println("Shutting down...");
+				keyboard.close();
+				server.stop();
+				server.join();
+				System.out.println("Server has shut down, begining restart");
+				
+
+				
+				
+
+				
+				
+			}
 			if (line.trim().toLowerCase().equals("quit")) {
+>>>>>>> 65380c1fa25d74fd22fc5e8f224ec2047294dee7
 				break;
 			}
 		}
-		
+
 		System.out.println("Shutting down...");
 		keyboard.close();
 		server.stop();
