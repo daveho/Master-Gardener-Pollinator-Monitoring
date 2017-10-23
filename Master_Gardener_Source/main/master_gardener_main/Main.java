@@ -22,11 +22,25 @@ public class Main {
 		// Start the server
 		server.start();
 		
-		// Wait for the user to type "quit"
+		// Wait for the user to type "quit" or "restart
 		System.out.println("Web server started at http://localhost:8081/Master-Gardener/home, type quit to shut down \n");
 		Scanner keyboard = new Scanner(System.in);
 		while (keyboard.hasNextLine()) {
 			String line = keyboard.nextLine();
+			if (line.trim().toLowerCase().equals("restart")) { 
+				System.out.println("Shutting down...");
+				keyboard.close();
+				server.stop();
+				server.join();
+				System.out.println("Server has shut down, begining restart");
+				
+
+				
+				
+
+				
+				
+			}
 			if (line.trim().toLowerCase().equals("quit")) {
 				break;
 			}

@@ -43,3 +43,4 @@ Jetty/_project
 /.idea
 Jetty/.classpath
 Derby/.classpath
+.recommenders
