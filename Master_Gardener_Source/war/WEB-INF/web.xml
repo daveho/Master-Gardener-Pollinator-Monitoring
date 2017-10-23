@@ -7,6 +7,10 @@
 
   <!-- Servlets -->
   <servlet>
+    <servlet-name>GardensServlet</servlet-name>
+    <servlet-class>servlet.GardensServlet</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>DataFormServlet</servlet-name>
   	<servlet-class>servlet.DataFormServlet</servlet-class>
   </servlet>
@@ -52,6 +56,10 @@
   </servlet>
 
   <!-- Servlet mappings -->
+  <servlet-mapping>
+    <servlet-name>GardensServlet</servlet-name>
+    <url-pattern>/gardens</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>DataFormServlet</servlet-name>
   	<url-pattern>/dataInput</url-pattern>
