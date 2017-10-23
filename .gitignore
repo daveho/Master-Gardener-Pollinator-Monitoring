@@ -46,9 +46,5 @@ Jetty/_project
 .idea
 Jetty/.classpath
 Derby/.classpath
-<<<<<<< HEAD
 .recommenders
 
-=======
-.recommenders
->>>>>>> 65380c1fa25d74fd22fc5e8f224ec2047294dee7
