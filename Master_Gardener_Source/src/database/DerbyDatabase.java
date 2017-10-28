@@ -1126,6 +1126,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt4 = null; //Posts table
 				PreparedStatement stmt5 = null; //Gardens table
 				PreparedStatement stmt6 = null; //County table
+				PreparedStatement stmt7 = null; //Garden data
 				try {
 					//CREATING USER
 					stmt1 = conn.prepareStatement(
@@ -1201,7 +1202,35 @@ public class DerbyDatabase implements IDatabase {
 							")"
 					);
 					stmt6.executeUpdate();
-					
+
+					// TODO: Check this.....I'm slightly confused...maybe more than slightly
+					// Create Garden Data Table
+					stmt7 = conn.prepareStatement(
+							"create table gardenData(" +
+									"garden_id integer primary key " +
+									"	generated always as identity (start with 1, increment by 1)," +
+									"garden_name varchar(50)," +
+									"garden_county VARCHAR(30)," +
+									"data INTEGER," +
+									"start_time INTEGER," +
+									"end_time INTEGER," +
+									"temp INTEGER," +
+									"wind VARCHAR(15)," +
+									"cloud_cover VARCHAR(15)," +
+									"plant_type VARCHAR(100)," +
+									"pollinator_type VARCHAR(100)," +
+									"Pollinator_count INTEGER," +
+									"avg_plot_height DECIMAL(5,2)," +
+									"plot_size VARCHAR(20)," +
+									"blooms_open VARCHAR(6)," +
+									"flower_coverage VARCHAR(10)," +
+									"plant_vigor VARCHAR(10)," +
+									"comments VARCHAR(500)" +
+									")"
+					);
+					stmt7.executeUpdate();
+
+
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -1210,6 +1239,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(stmt4);
 					DBUtil.closeQuietly(stmt5);
 					DBUtil.closeQuietly(stmt6);
+					DBUtil.closeQuietly(stmt7);
 				}
 			}
 		});
@@ -1226,6 +1256,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt4 = null;
 				PreparedStatement stmt5 = null;
 				PreparedStatement stmt6 = null;
+				PreparedStatement stmt7 = null;
 
 				try{
 					stmt1 = conn.prepareStatement("DROP TABLE groupMembers");
@@ -1234,6 +1265,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt4 = conn.prepareStatement("DROP TABLE groups");
 					stmt5 = conn.prepareStatement("DROP TABLE gardens"); //Gardens table
 					stmt6 = conn.prepareStatement("DROP TABLE counties"); //counties table
+					stmt7 = conn.prepareStatement("DROP TABLE gardenData"); //Garden Data Table
 
 					stmt1.executeUpdate();
 					stmt2.executeUpdate();
@@ -1241,6 +1273,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt4.executeUpdate();
 					stmt5.executeUpdate();
 					stmt6.executeUpdate();
+					stmt7.executeUpdate();
 					
 					conn.commit();
 				}catch(SQLException e){
@@ -1253,7 +1286,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(stmt4);
 					DBUtil.closeQuietly(stmt5);
 					DBUtil.closeQuietly(stmt6);
-
+					DBUtil.closeQuietly(stmt7);
 				}
 				return true;
 			}
