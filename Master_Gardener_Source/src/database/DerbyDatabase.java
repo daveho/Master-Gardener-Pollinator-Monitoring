@@ -131,7 +131,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param county_id - The identifier for a county. Use this with a drop-down box, most likely.
 	 * @return
 	 */
@@ -149,7 +149,7 @@ public class DerbyDatabase implements IDatabase {
 								" select county_name " +
 										"	from counties"
 										+ " where county_id = ?"
-										);
+						);
 						stmt.setInt(1, county_id);
 						set = stmt.executeQuery();
 
@@ -177,7 +177,7 @@ public class DerbyDatabase implements IDatabase {
 			//return -1;
 		}
 	}
-	
+
 	public String getCountyByStateName(final String state_name)
 	{
 		try {
@@ -192,7 +192,7 @@ public class DerbyDatabase implements IDatabase {
 								" select county_name " +
 										"	from counties"
 										+ " where state_name = ?"
-										);
+						);
 						stmt.setString(1, state_name);
 						set = stmt.executeQuery();
 
@@ -221,7 +221,7 @@ public class DerbyDatabase implements IDatabase {
 			//return -1;
 		}
 	}
-	
+
 	public String getUsernameByCounty(final String county_name)
 	{
 		try {
@@ -237,7 +237,7 @@ public class DerbyDatabase implements IDatabase {
 										"	from accounts, counties"
 										+ " where county_name = ? "
 										+ " and accounts.account_id = counties.account_id "
-										);
+						);
 						stmt.setString(1, county_name);
 						set = stmt.executeQuery();
 
@@ -267,8 +267,8 @@ public class DerbyDatabase implements IDatabase {
 			//return -1;
 		}
 	}
-	
-	
+
+
 	/**
 	 *
 	 * @param garden_id
@@ -288,7 +288,7 @@ public class DerbyDatabase implements IDatabase {
 								" select garden_address " +
 										"	from gardens"
 										+ " where garden_id = ?"
-										);
+						);
 						stmt.setInt(1, garden_id);
 						set = stmt.executeQuery();
 
@@ -1119,14 +1119,20 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 
-				
-				PreparedStatement stmt1 = null; //Accounts table
-				PreparedStatement stmt2 = null; //Groups table
-				PreparedStatement stmt3 = null; //Group members table
-				PreparedStatement stmt4 = null; //Posts table
-				PreparedStatement stmt5 = null; //Gardens table
-				PreparedStatement stmt6 = null; //County table
-				PreparedStatement stmt7 = null; //Garden data
+
+				PreparedStatement stmt1 = null; // Accounts table
+				PreparedStatement stmt2 = null; // Groups table
+				PreparedStatement stmt3 = null; // Group members table
+				PreparedStatement stmt4 = null; // Posts table
+				PreparedStatement stmt5 = null; // Gardens table
+				PreparedStatement stmt6 = null; // County table
+				PreparedStatement stmt7 = null; // Pollinators Table
+				PreparedStatement stmt8 = null; //Plant Stats Table
+				PreparedStatement stmt9 = null; // Plant Strands Table
+				PreparedStatement stmt10 = null; // Plants Table
+				PreparedStatement stmt11 = null; // Pollinator Record Table
+				PreparedStatement stmt12 = null; // Pollinator Data Table
+
 				try {
 					//CREATING USER
 					stmt1 = conn.prepareStatement(
@@ -1141,8 +1147,8 @@ public class DerbyDatabase implements IDatabase {
 									"	description varchar(180) " +
 									")"
 					);
+					stmt1.executeUpdate(); // Accounts
 
-					stmt1.executeUpdate();
 					//CREATING GROUP
 					stmt2 = conn.prepareStatement(
 							"create table groups (" +
@@ -1153,20 +1159,21 @@ public class DerbyDatabase implements IDatabase {
 									"   rating integer " +
 									")"
 					);
-					
-					stmt2.executeUpdate();
+					stmt2.executeUpdate(); // Groups
+
 					//CREATING GROUP MEMBERS
 					stmt3 = conn.prepareStatement(
 							"create table groupMembers (" +
 									"	member_id integer primary key " +
 									"		generated always as identity (start with 1, increment by 1), " +
-									"	group_id integer constraint group_id references groups, " +
+									"	group_id integer constraint member_group_id references groups, " +
 									"	account_id integer constraint group_account_id references accounts " +
 									")"
 					);
-					stmt3.executeUpdate();
-					
+					stmt3.executeUpdate(); // Group Members
+
 					//CREATING POSTS
+
 					stmt4 = conn.prepareStatement(
 							"create table posts (" +
 									"	post_id integer primary key " +
@@ -1176,11 +1183,11 @@ public class DerbyDatabase implements IDatabase {
 									"   text varchar(500) " +
 									")"
 					);
-					stmt4.executeUpdate();
+					stmt4.executeUpdate(); // Posts
 
 					// TODO: Check this
 					// Create Gardens Table
-          stmt5 = conn.prepareStatement(
+					stmt5 = conn.prepareStatement(
 							"create table gardens (" +
 									"garden_id integer primary key " +
 									"	generated always as identity (start with 1, increment by 1), " +
@@ -1188,48 +1195,122 @@ public class DerbyDatabase implements IDatabase {
 									"	account_id integer constraint garden_account_id references accounts " +
 									")"
 					);
-					stmt5.executeUpdate();
+					stmt5.executeUpdate(); // Gardens
 
 					// TODO: Check this
 					// Create Counties Table
 					stmt6 = conn.prepareStatement(
-					"create table counties(" +
-							"county_id integer primary key " +
-							"	generated always as identity (start with 1, increment by 1)," +
-							"county_name varchar(30)," +
-							"garden_id integer constraint county_garden_id references gardens," +
-							"account_id integer constraint county_account_id references accounts" +
-							")"
-					);
-					stmt6.executeUpdate();
-
-					// TODO: Check this.....I'm slightly confused...maybe more than slightly
-					// Create Garden Data Table
-					stmt7 = conn.prepareStatement(
-							"create table gardenData(" +
-									"garden_id integer primary key " +
+							"create table counties(" +
+									"county_id integer primary key " +
 									"	generated always as identity (start with 1, increment by 1)," +
-									"garden_name varchar(50)," +
-									"garden_county VARCHAR(30)," +
-									"data INTEGER," +
-									"start_time INTEGER," +
-									"end_time INTEGER," +
-									"temp INTEGER," +
-									"wind VARCHAR(15)," +
-									"cloud_cover VARCHAR(15)," +
-									"plant_type VARCHAR(100)," +
-									"pollinator_type VARCHAR(100)," +
-									"Pollinator_count INTEGER," +
-									"avg_plot_height DECIMAL(5,2)," +
-									"plot_size VARCHAR(20)," +
-									"blooms_open VARCHAR(6)," +
-									"flower_coverage VARCHAR(10)," +
-									"plant_vigor VARCHAR(10)," +
-									"comments VARCHAR(500)" +
+									"county_name varchar(30)," +
+									"garden_id integer constraint county_garden_id references gardens," +
+									"account_id integer constraint county_account_id references accounts" +
 									")"
 					);
-					stmt7.executeUpdate();
+					stmt6.executeUpdate(); // Counties
 
+					// TODO: Check this
+					// Create Pollinators Table
+					stmt7 = conn.prepareStatement(
+							"create table pollinators(" +
+									"pollinator_id integer primary key " +
+									"	generated always as identity (start with 1, increment by 1)," +
+									"pollinator_name varchar(30)," +
+									"pollinator_data varchar(30)," +
+									"pollinator_visit_count integer" +
+									")"
+					);
+					stmt7.executeUpdate(); // Pollinators
+
+					// TODO: Check this
+					// Plant Stats Table
+					stmt8 = conn.prepareStatement(
+							"create table plant_stats(" +
+									"stats_id integer primary key " +
+									"	generated always as identity (start with 1, increment by 1)," +
+									"plant_height integer," +
+									"plant_size integer," +
+									"blooms_open varchar(15)," +
+									"percent_coverage integer," +
+									"vigor varchar(15)" +
+									//"plant_strand varchar(30)" +
+									")"
+					);
+					stmt8.executeUpdate(); // Plant Stats
+
+
+					// TODO: Check this
+					// Create Plant Strands Table
+					stmt9 = conn.prepareStatement(
+							"create table plant_strands(" +
+									"strand_id integer primary key " +
+									"	generated always as identity (start with 1, increment by 1)," +
+									"strand_name varchar(30)," +
+									"pollinator_id integer constraint strand_pollinator_id references pollinators," +
+									"pollinator_visit_count integer constraint strand_pollinator_visit_count references pollinators," +
+									// ^ This is confusing, it means "Plant strand
+									// table_pollinator_visit_count"
+									"stats_id integer constraint strand_stats_id references plant_stats"+
+									")"
+					);
+					stmt9.executeUpdate(); // Plant Strands
+
+					// TODO: Check this
+					// Create Plants Table
+					stmt10 = conn.prepareStatement(
+							"create table plants(" +
+									"plant_id integer primary key " +
+									"	generated always as identity (start with 1, increment by 1)," +
+									"plant_name varchar(30)," +
+									"strand_id integer constraint plant_strand_id references plant_strands" +
+									")"
+					);
+					stmt10.executeUpdate(); // Plants
+
+
+
+					// TODO: Figure out what's going on with this table.
+					// In the schema, this does NOT reference other tables, which is weird.
+					// Is this table supposed to take data and upload it, or reference data?
+					// Pollinator Record Table
+					stmt11 = conn.prepareStatement(
+							"create table pollinator_records(" +
+									"record_id integer primary key " +
+									"	generated always as identity (start with 1, increment by 1)," +
+									" week_number integer " +
+							/*					^ don't forget comma if we uncomment this section
+							" plant_id integer, " +
+							" plant_strand_ID integer," +
+							" pollinator_id integer, " +
+							" uploader_id integer, " +
+							*/
+									")"
+					);
+					stmt11.executeUpdate(); // Pollinator Record
+
+					// TODO: Check this
+					// Plant Stats Table
+					stmt12 = conn.prepareStatement(
+							"create table pollinator_data(" +
+									"pollinator_data_id integer primary key " +
+									"	generated always as identity (start with 1, increment by 1)," +
+									" record_id integer constraint data_record_id references pollinator_records," +
+									" county_id integer constraint data_county_id references counties," +
+									// TODO: Is this account_id needed?
+									" account_id integer constraint data_account_id references accounts," +
+									" date varchar(10)," +
+									" time_start integer," +
+									" time_stop integer," +
+									" temperature integer," +
+									" wind varchar(10)," +
+									" cloud varchar(10)," +
+									// TODO: What is this data column business? A reference? I know I made the schema
+									// but golly
+									" pollinator_data_column varchar(50) " +
+									")"
+					);
+					stmt12.executeUpdate(); // Pollinator Data
 
 					return true;
 				} finally {
@@ -1240,6 +1321,12 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(stmt5);
 					DBUtil.closeQuietly(stmt6);
 					DBUtil.closeQuietly(stmt7);
+					DBUtil.closeQuietly(stmt8);
+					DBUtil.closeQuietly(stmt9);
+					DBUtil.closeQuietly(stmt10);
+					DBUtil.closeQuietly(stmt11);
+					DBUtil.closeQuietly(stmt12);
+
 				}
 			}
 		});
@@ -1257,24 +1344,45 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt5 = null;
 				PreparedStatement stmt6 = null;
 				PreparedStatement stmt7 = null;
+				PreparedStatement stmt8 = null;
+				PreparedStatement stmt9 = null;
+				PreparedStatement stmt10 = null;
+				PreparedStatement stmt11 = null;
+				PreparedStatement stmt12 = null;
 
 				try{
-					stmt1 = conn.prepareStatement("DROP TABLE groupMembers");
-					stmt2 = conn.prepareStatement("DROP TABLE posts");
-					stmt3 = conn.prepareStatement("DROP TABLE accounts");
-					stmt4 = conn.prepareStatement("DROP TABLE groups");
-					stmt5 = conn.prepareStatement("DROP TABLE gardens"); //Gardens table
-					stmt6 = conn.prepareStatement("DROP TABLE counties"); //counties table
-					stmt7 = conn.prepareStatement("DROP TABLE gardenData"); //Garden Data Table
+					stmt1 = conn.prepareStatement("DROP TABLE groupMembers"); // Group Members
+					stmt2 = conn.prepareStatement("DROP TABLE posts"); // Posts table
+					stmt3 = conn.prepareStatement("DROP TABLE accounts"); // Accounts table
+					stmt4 = conn.prepareStatement("DROP TABLE groups"); // Groups table
+					stmt5 = conn.prepareStatement("DROP TABLE gardens"); // Gardens table
+					stmt6 = conn.prepareStatement("DROP TABLE counties"); // Counties table
+					stmt7 = conn.prepareStatement("DROP TABLE pollinators"); // Pollinators Table
+					stmt8 = conn.prepareStatement("DROP TABLE plants"); // Plants Table
+					stmt9 = conn.prepareStatement("DROP TABLE plant_strands"); // Plant Strands Table
+					stmt10 = conn.prepareStatement("DROP TABLE plant_stats"); // Plant Stats Table
+					stmt11 = conn.prepareStatement("DROP TABLE pollinator_records"); // Pollinator Record Table
+					stmt12 = conn.prepareStatement("DROP TABLE pollinator_data"); // Pollinator Data Table
 
-					stmt1.executeUpdate();
-					stmt2.executeUpdate();
-					stmt3.executeUpdate();
-					stmt4.executeUpdate();
-					stmt5.executeUpdate();
-					stmt6.executeUpdate();
-					stmt7.executeUpdate();
-					
+
+					// Order matters here.
+					stmt12.executeUpdate(); // Pollinator Data
+					stmt1.executeUpdate(); // Group Members
+					stmt2.executeUpdate(); // Posts table
+					stmt6.executeUpdate(); // Counties table
+					stmt5.executeUpdate(); // Gardens table
+					stmt3.executeUpdate(); // Accounts table
+					stmt4.executeUpdate(); // Groups table
+					stmt8.executeUpdate(); // Plants
+					stmt9.executeUpdate(); // Plant Strands
+					stmt10.executeUpdate(); // Plant stats
+					stmt7.executeUpdate(); // Pollinators Table
+
+					stmt11.executeUpdate(); // Pollinator Record
+
+
+
+
 					conn.commit();
 				}catch(SQLException e){
 					System.out.println(e.getMessage());
@@ -1287,6 +1395,12 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(stmt5);
 					DBUtil.closeQuietly(stmt6);
 					DBUtil.closeQuietly(stmt7);
+					DBUtil.closeQuietly(stmt8);
+					DBUtil.closeQuietly(stmt9);
+					DBUtil.closeQuietly(stmt10);
+					DBUtil.closeQuietly(stmt11);
+					DBUtil.closeQuietly(stmt12);
+
 				}
 				return true;
 			}
