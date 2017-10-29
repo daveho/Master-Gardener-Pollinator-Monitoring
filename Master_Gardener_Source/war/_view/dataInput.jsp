@@ -109,15 +109,202 @@
             	<input type="text" id="username" name="gardenNameEntry"placeholder="Garden Name" value="" required>
                 <input type="password" id="username" name="password"placeholder="Password" value="" required>
                 <input type="Submit" value="Login" id="loginSubmit" name="loginSubmit">
-                
+
+
+
+
+				<%--
                 <div id="errorMessage">
                 	<c:if test="${! empty errorMessage}">
 						<tr>${errorMessage}</tr>
 					</c:if>
 				</div>
-				
-			</form><!-- /.data -->
+				--%>
 
+
+			</form><!-- /.data -->
+				<div class="dataInputContainer">
+					<form action="${$pageContext.servletContext.contextPath}/dataInput" method="post">
+						<table>
+							<tr><td>Garden Name:</td>
+								<c:if test="${! empty gardenName}">
+									<td><input type="text" id="password" name="gardenname" placeholder="Garden Name" value="${gardenName}"></td>
+								</c:if>
+
+								<c:if test="${empty gardenName}">
+									<td><input type="text" id="gardenName" name="gardenname" placeholder="Garden Name"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Date:</td>
+								<c:if test="${! empty date}">
+									<td><input type="text" id="date" name="date" placeholder="Date" value="${date}"></td>
+								</c:if>
+
+								<c:if test="${empty date}">
+									<td><input type="text" id="date" name="date" placeholder="Date"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Start Time:</td>
+								<c:if test="${! empty startTime}">
+									<td><input type="text" id="startTime" name="starttime" placeholder="Start Time" value="${startTime}"></td>
+								</c:if>
+
+								<c:if test="${empty startTime}">
+									<td><input type="text" id="startTime" name="startime" placeholder="Start Time"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>End Tiem:</td>
+								<c:if test="${! empty endTime}">
+									<td><input type="text" id="endTime" name="endtime" placeholder="End Time" value="${endTime}"></td>
+								</c:if>
+
+								<c:if test="${empty endTime}">
+									<td><input type="text" id="endTime" name="endtime" placeholder="End Time"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Temperature:</td>
+								<c:if test="${! empty temperature}">
+									<td><input type="text" id="temperature" name="temperature" placeholder="Temperature" value="${temperature}"></td>
+								</c:if>
+
+								<c:if test="${empty temperature}">
+									<td><input type="text" id="temperature" name="temperature" placeholder="temperature"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Windo:</td>
+								<c:if test="${! empty wind}">
+									<td><input type="text" id="wind" name="wind" placeholder="Wind" value="${wind}"></td>
+								</c:if>
+
+								<c:if test="${empty wind}">
+									<td><input type="text" id="wind" name="wind" placeholder="Wind"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Cloud Cover:</td>
+								<c:if test="${! empty cloudCover}">
+									<td><input type="text" id="cloudCover" name="cloudcover" placeholder="Cloud Cover" value="${cloudCover}"></td>
+								</c:if>
+
+								<c:if test="${empty cloudCover}">
+									<td><input type="text" id="cloudCover" name="cloudcover" placeholder="Cloud Cover"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Plant Type:</td>
+								<c:if test="${! empty plantType}">
+									<td><input type="text" id="plantType" name="planttype" placeholder="Plant Type" value="${plantType}"></td>
+								</c:if>
+
+								<c:if test="${empty plantType}">
+									<td><input type="text" id="plantType" name="planttype" placeholder="Plant Type"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Pollinator Type:</td>
+								<c:if test="${! empty pollinatorType}">
+									<td><input type="text" id="pollinatorType" name="pollinatortype" placeholder="Pollinator Type" value="${pollinatorType}"></td>
+								</c:if>
+
+								<c:if test="${empty pollinatorType}">
+									<td><input type="text" id="pollinatorType" name="pollinatortype" placeholder="Pollinator Type"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Pollinator Count:</td>
+								<c:if test="${! empty pollinatorCount}">
+									<td><input type="text" id="pollinatorCount" name="pollinatorcount" placeholder="Pollinator Count" value="${pollinatorCount}"></td>
+								</c:if>
+
+								<c:if test="${empty pollinatorCount}">
+									<td><input type="text" id="pollinatorCount" name="pollinatorcount" placeholder="Pollinator Count"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Average Height of Plot:</td>
+								<c:if test="${! empty avgHeightofPlot}">
+									<td><input type="text" id="avgHeightofPlot" name="avgheightofplot" placeholder="Average Hieght of Plot" value="${avgHeightofPlot}"></td>
+								</c:if>
+
+								<c:if test="${empty abgHeightofPlot}">
+									<td><input type="text" id="avgHeightofPlot" name="avgheightofplot" placeholder="Average Height of Plot"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Size of Plot:</td>
+								<c:if test="${! empty sizePlot}">
+									<td><input type="text" id="sizePlot" name="sizeplot" placeholder="Size of Plot" value="${sizePlot}"></td>
+								</c:if>
+
+								<c:if test="${empty sizePlot}">
+									<td><input type="text" id="sizePlot" name="sizeplot" placeholder="Size of Plot"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Blooms Open:</td>
+								<c:if test="${! empty bloomsOpen}">
+									<td><input type="text" id="bloomsOpen" name="bloomsopen" placeholder="Blooms Open" value="${bloomsOpen}"></td>
+								</c:if>
+
+								<c:if test="${empty bloomsOpen}">
+									<td><input type="text" id="bloomsOpen" name="bloomsopen" placeholder="Blooms Open"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Flower Coverage:</td>
+								<c:if test="${! empty flowerCoverage}">
+									<td><input type="text" id="flowerCoverage" name="flowercoverage" placeholder="Flower Coverage" value="${flowerCoverage}"></td>
+								</c:if>
+
+								<c:if test="${empty flowerCoverage}">
+									<td><input type="text" id="flowerCoverage" name="flowercoverage" placeholder="Flower Coverage"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Plant Vigor:</td>
+								<c:if test="${! empty plantVigor}">
+									<td><input type="text" id="plantVigor" name="plantvigor" placeholder="Plant Vigor" value="${plantVigor}"></td>
+								</c:if>
+
+								<c:if test="${empty plantVigor}">
+									<td><input type="text" id="plantVigor" name="plantvigor" placeholder="Plant Vigor"></td>
+								</c:if>
+							</tr>
+
+							<tr><td>Comments:</td>
+								<c:if test="${! empty comments}">
+									<td><input type="text" id="comments" name="comments" placeholder="Comments" value="${Comments}"></td>
+								</c:if>
+
+								<c:if test="${empty comments}">
+									<td><input type="text" id="comments" name="comments" placeholder="Comments"></td>
+								</c:if>
+							</tr>
+
+							<tr>
+
+							</tr>
+
+
+							<tr><td><input type="submit" id="loginSubmit" name="buttonPress" value="Submit Data"></td></tr>
+						</table>
+						<c:if test="${! empty errorMessage}">
+							<tr>${errorMessage}</tr>
+						</c:if>
+					</form>
+
+
+				</div>
+			</div>
+
+
+
+				<%--
 				<form id="gardenName" action="" method="post">
 					<input type="text" name="gardenNameEntry" placeholder="Garden Name"
 						value="" required>
@@ -130,6 +317,9 @@
 							href="#contact">Contact</a>
 					</div>
 				</div>
+
+
+
 
 				<script>
 				/* When the user clicks on the button, 
@@ -224,19 +414,19 @@
 					<input type="text" name="plantVigorField" placeholder="Plant Vigor"
 						value="" required>
 				</form>
-
+				--%>
 
 
 
 
 			</div>
-			<!-- /.wrapper -->
+	<%-- /.wrapper --%>
 
 
 
 			<!--pageContent-->
 			<div>
-				<!--  	<div id="coverPhotoContainer">
+				<%--  	<div id="coverPhotoContainer">
 						<img src="images/black_user.jpg" id="userPhoto">
 					</div>
 					<div class="pageInfo" style="height: 100px;">
@@ -262,7 +452,7 @@
 
 					</div>
 
--->
+				--%>
 				<div class="sidebar">
 					<button onclick="toggleSideBar()" id="toggle"
 						style="right: 0px; color: white">Group Options</button>

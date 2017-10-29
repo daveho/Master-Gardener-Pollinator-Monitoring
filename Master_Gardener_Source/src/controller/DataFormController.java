@@ -5,27 +5,19 @@ import database.DatabaseProvider;
 import database.DerbyDatabase;
 import database.IDatabase;
 
+import java.io.DataInput;
+
 public class DataFormController
 {
 	private IDatabase database = null;
 
 	public DataFormController() {
-
-		// creating DB instance here
 		DatabaseProvider.setInstance(new DerbyDatabase());
 		database = DatabaseProvider.getInstance();		
 	}
-	
-	
-	
 	/*
-	 createNewDataForm(){
-	 
-	 }
-	 
-	 //Consider making a form class
-	 submitNewDataForm(Form form){
-	 
-	 }
-	 */
+	public boolean createDataInput(DataInput dataInput) {
+		return this.database.insertNewDataInputofGardenIntoDatabase(dataInput);
+	}
+	*/
 }
