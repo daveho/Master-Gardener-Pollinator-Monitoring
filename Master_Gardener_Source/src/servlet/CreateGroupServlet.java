@@ -12,74 +12,69 @@ import controller.CreateGroupController;
 import model.Group;
 
 public class CreateGroupServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);	
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-	@SuppressWarnings("unlikely-arg-type")
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+        req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
+    }
 
-		String name = null;
-		String description = null;
-		String errorMessage = null;
-		int rating = 0;
+    @SuppressWarnings("unlikely-arg-type")
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-		name = req.getParameter("groupname");
-		description = req.getParameter("description");
-		rating = getIntFromParameter(req.getParameter("rating"));
+        String name = null;
+        String description = null;
+        String errorMessage = null;
+        int rating = 0;
 
-		if("".equals(name) || name == null){
-			errorMessage = "Invalid Group name, please re-enter";
-			System.out.printf("%s", errorMessage);
-			name = null;
-			req.setAttribute("errorMessage", errorMessage);
-			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
-		}
-		else if("".equals(description) || description == null){
-			errorMessage = "Invalid Description, please re-enter";
-			System.out.printf("%s", errorMessage);
-			description = null;
-			req.setAttribute("errorMessage", errorMessage);
-			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
-		}
+        name = req.getParameter("groupname");
+        description = req.getParameter("description");
+        rating = getIntFromParameter(req.getParameter("rating"));
 
-		else if("".equals(rating) || rating == 0){
-			errorMessage = "Invalid Rating, please re-enter";
-			System.out.printf("%s", errorMessage);
-			req.setAttribute("errorMessage", errorMessage);
-			req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
-		}
-		else{
-			Group group = new Group(name, description, rating);
-			CreateGroupController controller = new CreateGroupController();
+        if ("".equals(name) || name == null) {
+            errorMessage = "Invalid Group name, please re-enter";
+            System.out.printf("%s", errorMessage);
+            name = null;
+            req.setAttribute("errorMessage", errorMessage);
+            req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
+        } else if ("".equals(description) || description == null) {
+            errorMessage = "Invalid Description, please re-enter";
+            System.out.printf("%s", errorMessage);
+            description = null;
+            req.setAttribute("errorMessage", errorMessage);
+            req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
+        } else if ("".equals(rating) || rating == 0) {
+            errorMessage = "Invalid Rating, please re-enter";
+            System.out.printf("%s", errorMessage);
+            req.setAttribute("errorMessage", errorMessage);
+            req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
+        } else {
+            Group group = new Group(name, description, rating);
+            CreateGroupController controller = new CreateGroupController();
 
-			if(controller.createGroup(group)){
-				req.setAttribute("group", group);
-				req.getRequestDispatcher("/_view/user.jsp").forward(req, resp);
-			}
-			else{
-				errorMessage = "Unexpected Error";
-				req.setAttribute("errorMessage", errorMessage);
-				req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
-			}
-		}
-		req.setAttribute("groupname", name);
-		req.setAttribute("description", description);
-		req.setAttribute("rating", rating);
-	}
-	
-	private int getIntFromParameter(String s){
-		if(s == null || s.equals("")) {
-			return 0;
-		} else {
-			return Integer.parseInt(s);
-		}
-	}
+            if (controller.createGroup(group)) {
+                req.setAttribute("group", group);
+                req.getRequestDispatcher("/_view/user.jsp").forward(req, resp);
+            } else {
+                errorMessage = "Unexpected Error";
+                req.setAttribute("errorMessage", errorMessage);
+                req.getRequestDispatcher("/_view/createGroup.jsp").forward(req, resp);
+            }
+        }
+        req.setAttribute("groupname", name);
+        req.setAttribute("description", description);
+        req.setAttribute("rating", rating);
+    }
+
+    private int getIntFromParameter(String s) {
+        if (s == null || s.equals("")) {
+            return 0;
+        } else {
+            return Integer.parseInt(s);
+        }
+    }
 }

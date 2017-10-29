@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.LoginController;
 import controller.SignupController;
 import model.Account;
+
 
 public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
