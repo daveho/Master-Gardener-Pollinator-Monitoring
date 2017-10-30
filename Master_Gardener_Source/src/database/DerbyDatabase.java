@@ -1349,7 +1349,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt10 = null;
 				PreparedStatement stmt11 = null;
 				PreparedStatement stmt12 = null;
-				
+
 				try{
 					stmt1 = conn.prepareStatement("DROP TABLE groupMembers"); // Group Members
 					stmt2 = conn.prepareStatement("DROP TABLE posts"); // Posts table
@@ -1363,8 +1363,8 @@ public class DerbyDatabase implements IDatabase {
 					stmt10 = conn.prepareStatement("DROP TABLE plant_stats"); // Plant Stats Table
 					stmt11 = conn.prepareStatement("DROP TABLE pollinator_records"); // Pollinator Record Table
 					stmt12 = conn.prepareStatement("DROP TABLE pollinator_data"); // Pollinator Data Table
-					
-					
+
+
 					// Order matters here.
 					stmt12.executeUpdate(); // Pollinator Data
 					stmt1.executeUpdate(); // Group Members
@@ -1377,12 +1377,11 @@ public class DerbyDatabase implements IDatabase {
 					stmt9.executeUpdate(); // Plant Strands
 					stmt10.executeUpdate(); // Plant stats
 					stmt7.executeUpdate(); // Pollinators Table
-					
 					stmt11.executeUpdate(); // Pollinator Record
-					
-					
-					
-					
+
+
+
+
 					conn.commit();
 				}catch(SQLException e){
 					System.out.println(e.getMessage());
