@@ -78,6 +78,7 @@
 </div>
     	</header><!-- /.item --></div><!-- /#page -->
     <!-- Load JS here for greater good =============================-->
+    <script src="js/login.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>

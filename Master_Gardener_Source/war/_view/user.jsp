@@ -127,7 +127,7 @@
                             <ul class="list-unstyled">
                                 <li class="sidebarItem"><a href="http://localhost:8081/Master-Gardener/createGroup"
                                                            style="color: white">Add Garden to County</a></li>
-                                <li class="sidebarItem"><a href="http://localhost:8081/Master-Gardener/gardens"
+                                <li class="sidebarItem"><a href="http://localhost:8081/Master-Gardener/counties"
                                                            style="color: white">Available Gardens</a></li>
                                 <c:forEach items="${groups}" var="group">
                                     <tr>

@@ -7,7 +7,7 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>GardensServlet</servlet-name>
+    <servlet-name>CountiesServlet</servlet-name>
     <servlet-class>servlet.GardensServlet</servlet-class>
   </servlet>
   <servlet>
@@ -57,8 +57,8 @@
 
   <!-- Servlet mappings -->
   <servlet-mapping>
-    <servlet-name>GardensServlet</servlet-name>
-    <url-pattern>/gardens</url-pattern>
+    <servlet-name>CountiesServlet</servlet-name>
+    <url-pattern>/counties</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>DataFormServlet</servlet-name>

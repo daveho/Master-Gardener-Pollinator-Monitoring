@@ -1,21 +1,15 @@
 package servlet;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 //import controller.LoginController;
-import controller.DataController;
-import model.Account;
-import model.Group;
 
 
-public class GardensServlet extends HttpServlet {
+public class CountiesServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
