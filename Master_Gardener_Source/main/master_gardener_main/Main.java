@@ -1,13 +1,20 @@
 package master_gardener_main;
 
-import java.util.Scanner;
+import java.io.File;
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.util.thread.QueuedThreadPool;
-import org.eclipse.jetty.webapp.WebAppContext;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
+		String webappCodeBase = "./war";
+		File warFile = new File(webappCodeBase);
+		Launcher launcher = new Launcher();
+		Server server = launcher.launch(true, 8081, warFile.getAbsolutePath(), "/Master-Gardener");
+		server.start();
+		server.dumpStdErr();
+		server.join();
+		
+		/*
 		Server server = new Server(8081);
 
 		// Create and register a webapp context
@@ -37,5 +44,6 @@ public class Main {
 		server.stop();
 		server.join();
 		System.out.println("Server has shut down, exiting");
+		*/
 	}
 }
